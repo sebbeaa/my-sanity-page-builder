@@ -15,11 +15,18 @@
     "sanity"
   ],
   "dependencies": {
+    "@sanity/icons": "^2.11.6",
+    "@sanity/ui": "^2.0.13",
     "@sanity/vision": "^3.35.2",
+    "@types/crypto-js": "^4.2.2",
+    "crypto-js": "^4.2.0",
+    "highlight.js": "^11.9.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
+    "react-quill": "^2.0.0",
     "sanity": "^3.35.2",
+    "sanity-plugin-media": "^2.2.5",
     "styled-components": "^6.0.7"
   },
   "devDependencies": {
