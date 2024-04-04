@@ -1,0 +1,28 @@
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); /* Adjust minmax for your item size */
+  gap: 16px; /* Spacing between grid items */
+  padding: 16px; /* Padding around the grid */
+  box-sizing: border-box; /* Include padding in the total width and height */
+  border-bottom: 1px solid #d0d0d0; /* Border at the bottom of the grid */
+  min-width: none;
+  max-width: none;
+  width: 100%; /* Full width */
+  justify-content: center;
+  align-items: center;
+  resize: vertical;
+}
+
+/* Basic styles for grid items - adjust according to your actual gridItem class or element */
+.grid-item {
+  background-color: #282828; /* Light grey background */
+  padding: 8px; /* Padding inside each grid item */
+  box-sizing: border-box; /* Include padding in the total width and height */
+  border: 1px dotted #d0d0d0; /* Border for each grid item */
+  border-radius: 4px; /* Rounded corners for grid items */
+  resize: vertical;
+  justify-self: center;
+  width: 100%;
+}
+
+/* Highlight grid item on drag over */

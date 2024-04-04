@@ -7,7 +7,7 @@ export default defineField({
   title: 'HTML Editor',
   fields: [
     {
-      name: 'encrypted',
+      name: 'content',
       title: 'HTML Code',
       type: 'string',
       components: {
