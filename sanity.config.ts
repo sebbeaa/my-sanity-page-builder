@@ -1,7 +1,15 @@
-import {defineConfig} from 'sanity'
+import {TypeReference, defineConfig} from 'sanity'
+import {media} from 'sanity-plugin-media'
 import {structureTool} from 'sanity/structure'
-import {visionTool} from '@sanity/vision'
-import {schemaTypes} from './schemaTypes'
+
+import home from './schemas/singletons/home'
+import settings from './schemas/singletons/settings'
+
+import page from './schemas/documents/page'
+import {singletonPlugin} from './plugins/settings'
+import html, {htmlVisualEditorSchema} from './schemas/arrays/createEditor'
+import {pageStructure} from './plugins/settings'
+import htmlEditor from './schemas/arrays/htmlEditor'
 
 export default defineConfig({
   name: 'default',
@@ -10,9 +18,27 @@ export default defineConfig({
   projectId: 'dholx6dc',
   dataset: 'encrypted',
 
-  plugins: [structureTool(), visionTool()],
+  plugins: [
+    singletonPlugin(['home', 'settings']),
+    structureTool({
+      structure: pageStructure([home, settings]),
+    }),
+    // Vision is a tool that lets you query your content with GROQ in the studio
+    // https://www.sanity.io/docs/the-vision-plugin
+    media(),
+  ],
 
   schema: {
-    types: schemaTypes,
+    // If you want more content types, you can add them to this array
+    types: [
+      // Singletons
+      home,
+      settings,
+      // Documents
+      page,
+      htmlEditor,
+      // Objects
+    ],
+    html,
   },
 })
