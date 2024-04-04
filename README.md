@@ -1,9 +1,11 @@
-# Sanity Clean Content Studio
+## Custom Tiptap Drag & Drop Editor For Sanity Studio
 
-Congratulations, you have now installed the Sanity Content Studio, an open source real-time content editing environment connected to the Sanity backend.
+In this Sanity Studio, we have implemented a custom Tiptap editor with drag & drop functionality. This allows for a more interactive and user-friendly content editing experience.
 
-Now you can do the following things:
+Here are some features of the custom Tiptap editor:
 
-- [Read “getting started” in the docs](https://www.sanity.io/docs/introduction/getting-started?utm_source=readme)
-- [Join the community Slack](https://slack.sanity.io/?utm_source=readme)
-- [Extend and build plugins](https://www.sanity.io/docs/content-studio/extending?utm_source=readme)
+- Drag & Drop: Easily rearrange your content by dragging and dropping elements.
+- Customizable: The editor is fully customizable to fit your specific needs.
+- Real-time updates: Changes are reflected in real-time, ensuring all users see the most up-to-date content.
+
+For more information on how to use the custom Tiptap editor, please refer to the repo owner
