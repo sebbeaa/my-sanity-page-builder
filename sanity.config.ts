@@ -1,4 +1,4 @@
-import {TypeReference, defineConfig} from 'sanity'
+import {defineConfig} from 'sanity'
 import {media} from 'sanity-plugin-media'
 import {structureTool} from 'sanity/structure'
 
@@ -7,16 +7,17 @@ import settings from './schemas/singletons/settings'
 
 import page from './schemas/documents/page'
 import {singletonPlugin} from './plugins/settings'
-import html, {htmlVisualEditorSchema} from './schemas/arrays/createEditor'
+import html from './schemas/arrays/createEditor'
 import {pageStructure} from './plugins/settings'
 import htmlEditor from './schemas/arrays/htmlEditor'
 
 export default defineConfig({
-  name: 'default',
-  title: 'My Sanity Project',
+  name: process.env.SANITY_STUDIO_PROJECT_NAME,
+  title: process.env.SANITY_STUDIO_PROJECT_TITLE,
 
-  projectId: 'dholx6dc',
-  dataset: 'encrypted',
+  projectId: process.env.SANITY_STUDIO_API_PROJECT_ID as string | 'any',
+
+  dataset: process.env.SANITY_STUDIO_API_DATASET as string | 'any',
 
   plugins: [
     singletonPlugin(['home', 'settings']),
