@@ -1,3 +1,5 @@
+## ALPHA VERSION "0.0", USE WITH CAUTION
+
 ## Custom Tiptap Drag & Drop Editor For Sanity Studio
 
 In this Sanity Studio, we have implemented a custom Tiptap editor with drag & drop functionality. This allows for a more interactive and user-friendly content editing experience.
