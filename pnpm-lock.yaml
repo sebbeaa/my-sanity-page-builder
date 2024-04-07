@@ -32,6 +32,12 @@ dependencies:
   crypto-js:
     specifier: ^4.2.0
     version: 4.2.0
+  grapesjs:
+    specifier: ^0.21.10
+    version: 0.21.10
+  grapesjs-preset-webpage:
+    specifier: ^1.0.3
+    version: 1.0.3
   highlight.js:
     specifier: ^11.9.0
     version: 11.9.0
@@ -2984,6 +2990,13 @@ packages:
       '@babel/types': 7.24.0
     dev: false
 
+  /@types/backbone@1.4.19:
+    resolution: {integrity: sha512-byyn236JymGByOajKA7mi1k+/jKn162TIvArOB4SHgOGbVlFj8CSfJH4jekP0qo0vJwW5khrrsiiO1Jsos6ZvA==}
+    dependencies:
+      '@types/jquery': 3.5.29
+      '@types/underscore': 1.11.15
+    dev: false
+
   /@types/crypto-js@4.2.2:
     resolution: {integrity: sha512-sDOLlVbHhXpAUAL0YHDUUwDZf3iN4Bwi4W6a0W0b+QcAezUbRtH4FVb+9J4h+XFPW7l/gQ9F8qC7P+Ec4k8QVQ==}
     dev: false
@@ -3018,6 +3031,12 @@ packages:
 
   /@types/is-hotkey@0.1.10:
     resolution: {integrity: sha512-RvC8KMw5BCac1NvRRyaHgMMEtBaZ6wh0pyPTBu7izn4Sj/AX9Y4aXU5c7rX8PnM/knsuUpC1IeoBkANtxBypsQ==}
+    dev: false
+
+  /@types/jquery@3.5.29:
+    resolution: {integrity: sha512-oXQQC9X9MOPRrMhPHHOsXqeQDnWeCDT3PelUIg/Oy8FAbzSZtFHRjc7IpbfFVmpLtJ+UOoywpRsuO5Jxjybyeg==}
+    dependencies:
+      '@types/sizzle': 2.3.8
     dev: false
 
   /@types/json-schema@7.0.15:
@@ -3102,6 +3121,10 @@ packages:
     resolution: {integrity: sha512-xZx/hZsf1p9J5lGN/nGTsuW/chJCdlyGxilwg1TS78rygBCU5bpY50zZiFcIimlnl0p41kAyaASsy0bqU7WyBA==}
     dev: false
 
+  /@types/sizzle@2.3.8:
+    resolution: {integrity: sha512-0vWLNK2D5MT9dg0iOo8GlKguPAU02QjmZitPEsXRuJXU/OGIOt9vT9Fc26wtYuavLxtO45v9PGleoL9Z0k1LHg==}
+    dev: false
+
   /@types/speakingurl@13.0.6:
     resolution: {integrity: sha512-ywkRHNHBwq0mFs/2HRgW6TEBAzH66G8f2Txzh1aGR0UC9ZoAUHfHxLZGDhwMpck4BpSnB61eNFIFmlV+TJ+KUA==}
     dev: false
@@ -3114,6 +3137,10 @@ packages:
     resolution: {integrity: sha512-Zbnx4wpkWBMBSu5CytMbrT5ZpMiF55qgM+EpHzR4yIDu7mv52cej8hTkOc6K+LzpkOAbxwn/m7j3iO+/l42YkQ==}
     dependencies:
       '@types/node': 20.12.3
+    dev: false
+
+  /@types/underscore@1.11.15:
+    resolution: {integrity: sha512-HP38xE+GuWGlbSRq9WrZkousaQ7dragtZCruBVMi0oX1migFZavZ3OROKHSkNp/9ouq82zrWtZpg18jFnVN96g==}
     dev: false
 
   /@types/unist@2.0.10:
@@ -3622,6 +3649,20 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
+  /backbone-undo@0.2.6:
+    resolution: {integrity: sha512-AsfpNiljLXlk7TcffDUu3EAUq7CxWbyTNwARWrql5XTzN4vh6WzEEBZYaKK4kTTz+iW1tSzqUooaGRIwO83kWA==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+    dependencies:
+      backbone: 1.4.1
+      underscore: 1.13.6
+    dev: false
+
+  /backbone@1.4.1:
+    resolution: {integrity: sha512-ADy1ztN074YkWbHi8ojJVFe3vAanO/lrzMGZWUClIP7oDD/Pjy2vrASraUP+2EVCfIiTtCW4FChVow01XneivA==}
+    dependencies:
+      underscore: 1.13.6
+    dev: false
+
   /balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
 
@@ -3832,6 +3873,14 @@ packages:
   /clone@2.1.2:
     resolution: {integrity: sha512-3Pe/CF1Nn94hyhIYpjtiLhdCoEoz0DqQ+988E9gmeEdQZlojxnOb74wctFyuwWQHzqyf9X7C7MG8juUpqBJT8w==}
     engines: {node: '>=0.8'}
+    dev: false
+
+  /codemirror-formatting@1.0.0:
+    resolution: {integrity: sha512-br9yM6eJI3pJHekEnoyHaBEb1B7XxxDjju+vRyBe8QGLp5saTIXXkZ+eFCTqXSAtI8QEZDFVEX2/SOjH2sVWRQ==}
+    dev: false
+
+  /codemirror@5.65.16:
+    resolution: {integrity: sha512-br21LjYmSlVL0vFCPWPfhzUCT34FM/pAdK7rRIZwa0rrtrIdotvP4Oh4GUHsu2E3IrQMCfRkL/fN3ytMNxVQvg==}
     dev: false
 
   /codemirror@6.0.1(@lezer/common@1.2.1):
@@ -5244,6 +5293,22 @@ packages:
 
   /graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
+    dev: false
+
+  /grapesjs-preset-webpage@1.0.3:
+    resolution: {integrity: sha512-C0VOKLAdhv0j1f81c6F2uk3JpJvxgXl5DeHUtDa5qGf/HZzaCmQxsvd8Re3Oh5Cah4uUCqoi9uB5FYx3hLND2w==}
+    dev: false
+
+  /grapesjs@0.21.10:
+    resolution: {integrity: sha512-wvOBa8kjBLDeH006p4/krSzGNze2H7Rsncv37LxvDzC6QCQucEjQ7Lb+Fd50jDSWNnxavRRJLJPnXyPTGZYGuQ==}
+    dependencies:
+      '@types/backbone': 1.4.19
+      backbone: 1.4.1
+      backbone-undo: 0.2.6
+      codemirror: 5.65.16
+      codemirror-formatting: 1.0.0
+      promise-polyfill: 8.3.0
+      underscore: 1.13.6
     dev: false
 
   /graphemer@1.4.0:
@@ -6701,6 +6766,10 @@ packages:
     dependencies:
       speedometer: 1.0.0
       through2: 2.0.5
+    dev: false
+
+  /promise-polyfill@8.3.0:
+    resolution: {integrity: sha512-H5oELycFml5yto/atYqmjyigJoAo3+OXwolYiH7OfQuYlAqhxNvTfiNMbV9hsC6Yp83yE5r2KTVmtrG6R9i6Pg==}
     dev: false
 
   /prop-types@15.8.1:
@@ -8370,6 +8439,10 @@ packages:
     dependencies:
       buffer: 5.7.1
       through: 2.3.8
+    dev: false
+
+  /underscore@1.13.6:
+    resolution: {integrity: sha512-+A5Sja4HP1M08MaXya7p5LvjuM7K6q/2EaC0+iovj/wOcMsTzMvDFbasi/oSapiwOlt252IqsKqPjCl7huKS0A==}
     dev: false
 
   /undici-types@5.26.5:

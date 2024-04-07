@@ -12,6 +12,9 @@
   align-items: center;
   resize: vertical;
 }
+.gjs-pn-panel {
+  overflow-x: scroll;
+}
 
 /* Basic styles for grid items - adjust according to your actual gridItem class or element */
 .grid-item {

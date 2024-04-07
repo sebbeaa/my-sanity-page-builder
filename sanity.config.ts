@@ -11,10 +11,9 @@ import html from './schemas/arrays/createEditor'
 import {pageStructure} from './plugins/settings'
 import htmlEditor from './schemas/arrays/htmlEditor'
 
-export default defineConfig({
-  name: process.env.SANITY_STUDIO_PROJECT_NAME,
-  title: process.env.SANITY_STUDIO_PROJECT_TITLE,
+const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'myStudio'
 
+export default defineConfig({
   projectId: process.env.SANITY_STUDIO_API_PROJECT_ID as string | 'any',
 
   dataset: process.env.SANITY_STUDIO_API_DATASET as string | 'any',
@@ -40,6 +39,5 @@ export default defineConfig({
       htmlEditor,
       // Objects
     ],
-    html,
   },
 })

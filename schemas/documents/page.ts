@@ -23,11 +23,6 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      title: 'HTML Editor',
-      name: 'html',
-      type: 'html',
-    }),
-    defineField({
       name: 'iframe',
       title: 'IFrame',
       type: 'object',
@@ -38,6 +33,11 @@ export default defineType({
           type: 'url',
         },
       ],
+    }),
+    defineField({
+      title: 'HTML Editor',
+      name: 'html',
+      type: 'html',
     }),
   ],
   preview: {
