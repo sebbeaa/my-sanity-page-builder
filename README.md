@@ -28,9 +28,9 @@ Follow these steps to install and deploy the app:
 remember to define .env file containing these vars
 
 ```.env
-SANITY_STUDIO_SECRET="ed193b2987bacc5b841eb5babda52f4e"
+SANITY_STUDIO_SECRET=""
 SANITY_STUDIO_PROJECT_NAME="default"
-SANITY_STUDIO_PROJECT_TITLE="My Sanity Project"
-SANITY_STUDIO_PROJECT_ID="dholx6dc"
-SANITY_STUDIO_DATASET="encrypted"
+SANITY_STUDIO_PROJECT_TITLE=""
+SANITY_STUDIO_PROJECT_ID=""
+SANITY_STUDIO_DATASET=""
 ```
