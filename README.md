@@ -1,9 +1,3 @@
-To adjust the README for a project that incorporates a custom Tiptap Drag & Drop Editor alongside GrapesJS for a rich, customizable component builder within Sanity Studio, you'll want to highlight the integration and capabilities of both editors. This includes focusing on the drag & drop functionality, real-time updates, and the extensive customization options provided by GrapesJS, as well as detailing the setup and deployment processes specific to your project environment.
-
-Here's a revised version of the README that emphasizes GrapesJS along with the custom Tiptap Editor:
-
----
-
 ## ALPHA VERSION "0.0", USE WITH CAUTION
 
 ## Custom GrapesJS and Tiptap Editor for Sanity Studio
