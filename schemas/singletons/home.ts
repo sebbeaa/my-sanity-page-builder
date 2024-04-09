@@ -17,8 +17,8 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'html',
-      type: 'html',
+      name: 'content',
+      type: 'content',
     }),
   ],
   preview: {

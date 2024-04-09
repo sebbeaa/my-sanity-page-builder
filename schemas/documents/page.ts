@@ -1,5 +1,6 @@
 import {DocumentIcon} from '@sanity/icons'
 import {defineField, defineType} from 'sanity'
+import Editor from '../../plugins/grapes/createEditor'
 
 export default defineType({
   type: 'document',
@@ -35,9 +36,8 @@ export default defineType({
       ],
     }),
     defineField({
-      title: 'HTML Editor',
-      name: 'html',
-      type: 'html',
+      name: 'content',
+      type: 'content',
     }),
   ],
   preview: {

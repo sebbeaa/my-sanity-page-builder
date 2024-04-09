@@ -7,9 +7,8 @@ import settings from './schemas/singletons/settings'
 
 import page from './schemas/documents/page'
 import {singletonPlugin} from './plugins/settings'
-import html from './schemas/arrays/createEditor'
 import {pageStructure} from './plugins/settings'
-import htmlEditor from './schemas/arrays/htmlEditor'
+import htmlEditor from './plugins/grapes'
 
 export default defineConfig({
   name: 'default',
@@ -26,6 +25,7 @@ export default defineConfig({
     // Vision is a tool that lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
     media(),
+    htmlEditor,
   ],
 
   schema: {
@@ -37,8 +37,6 @@ export default defineConfig({
       // Documents
       page,
       htmlEditor,
-      // Objects
     ],
-    html,
   },
 })

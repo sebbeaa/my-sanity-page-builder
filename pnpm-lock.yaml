@@ -50,6 +50,9 @@ dependencies:
   sanity-plugin-media:
     specifier: ^2.2.5
     version: 2.2.5(@sanity/ui@2.0.13)(@types/react@18.2.74)(react-dom@18.2.0)(react@18.2.0)(sanity@3.36.3)(styled-components@6.1.8)
+  split.js:
+    specifier: ^1.6.5
+    version: 1.6.5
   styled-components:
     specifier: ^6.0.7
     version: 6.1.8(react-dom@18.2.0)(react@18.2.0)
@@ -7423,6 +7426,10 @@ packages:
 
   /speedometer@1.0.0:
     resolution: {integrity: sha512-lgxErLl/7A5+vgIIXsh9MbeukOaCb2axgQ+bKCdIE+ibNT4XNYGNCR1qFEGq6F+YDASXK3Fh/c5FgtZchFolxw==}
+    dev: false
+
+  /split.js@1.6.5:
+    resolution: {integrity: sha512-mPTnGCiS/RiuTNsVhCm9De9cCAUsrNFFviRbADdKiiV+Kk8HKp/0fWu7Kr8pi3/yBmsqLFHuXGT9UUZ+CNLwFw==}
     dev: false
 
   /split2@4.2.0:

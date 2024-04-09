@@ -1,4 +1,4 @@
-## ALPHA VERSION "0.0", USE WITH CAUTION
+## ALPHA VERSION "1.0.1", USE WITH CAUTION
 
 ## Custom GrapesJS and Tiptap Editor for Sanity Studio
 
