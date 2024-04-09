@@ -50,7 +50,7 @@ SANITY_STUDIO_PROJECT_ID=""
 SANITY_STUDIO_DATASET=""
 ```
 
-For deploying and fetching vars, especially if you have another Sanity project setup, you can use Vercel (install globally or use npx):
+For deploying and fetching vars, especially if you have another Sanity project setup, you can use Vercel :
 
 ```zsh
 pnpm i vercel@latest
