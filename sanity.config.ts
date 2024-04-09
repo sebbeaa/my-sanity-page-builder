@@ -1,4 +1,4 @@
-import {defineConfig} from 'sanity'
+import {TypeReference, defineConfig} from 'sanity'
 import {media} from 'sanity-plugin-media'
 import {structureTool} from 'sanity/structure'
 
@@ -11,12 +11,12 @@ import html from './schemas/arrays/createEditor'
 import {pageStructure} from './plugins/settings'
 import htmlEditor from './schemas/arrays/htmlEditor'
 
-const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'myStudio'
-
 export default defineConfig({
-  projectId: process.env.SANITY_STUDIO_API_PROJECT_ID as string | 'any',
+  name: 'default',
+  title: 'My Sanity Project',
 
-  dataset: process.env.SANITY_STUDIO_API_DATASET as string | 'any',
+  projectId: process.env.SANITY_STUDIO_API_PROJECT_ID || '',
+  dataset: process.env.SANITY_STUDIO_API_DATASET || 'production',
 
   plugins: [
     singletonPlugin(['home', 'settings']),
@@ -39,5 +39,6 @@ export default defineConfig({
       htmlEditor,
       // Objects
     ],
+    html,
   },
 })
