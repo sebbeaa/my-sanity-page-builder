@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {type DocumentDefinition} from 'sanity'
 import {type StructureResolver} from 'sanity/structure'
 

@@ -1,7 +1,7 @@
 {
   "name": "my-sanity-project",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "package.json",
   "license": "UNLICENSED",
   "scripts": {
@@ -30,6 +30,7 @@
     "react-is": "^18.2.0",
     "sanity": "^3.35.2",
     "sanity-plugin-media": "^2.2.5",
+    "split.js": "^1.6.5",
     "styled-components": "^6.0.7"
   },
   "devDependencies": {

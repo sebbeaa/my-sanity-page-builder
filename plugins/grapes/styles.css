@@ -31,9 +31,17 @@ html {
   align-items: center;
   resize: vertical;
 }
+
+.gjs-frame-wrapper {
+  width: 100%;
+}
+
 .gjs-pn-panel {
   overflow-x: scroll;
+  background-color: #1f2022; /* Light gray, adjust to match Sanity.io */
 }
+
+/* Panel background */
 
 /* Basic styles for grid items - adjust according to your actual gridItem class or element */
 .grid-item {
