@@ -7,6 +7,7 @@ import {set} from 'sanity'
 import React, {useEffect, useRef, useState} from 'react'
 import grapesjs from 'grapesjs'
 import plugin from 'grapesjs-tailwind'
+const worker = new Worker(new URL('./cryptoWorker.js', import.meta.url))
 
 const handleFileChange = async (event) => {
   const file = event.target.files[0]
@@ -59,6 +60,16 @@ const Editor = React.forwardRef((props, ref) => {
 const Grapes = ({ref, value, onChange}) => {
   ref = useRef(null)
   const [editor, setEditor] = useState(null)
+  const [encryptedHtml, setEncryptedHtml] = useState('')
+  const handleSave = async () => {
+    try {
+      if (!editor) return
+      setEncryptedHtml(encryptHtml(editor.getHtml()))
+      await onChange(set(encryptedHtml))
+    } catch (error) {
+      console.error('Error in handleSave:', error)
+    }
+  }
   useEffect(() => {
     if (!ref) return
     const editor = grapesjs.init({
@@ -81,7 +92,26 @@ const Grapes = ({ref, value, onChange}) => {
 
     editor.on('load', () => {
       // Decrypt the content when the editor is loaded
+      if (!value) return
       editor.setComponents(decryptHtml(value))
+    })
+
+    editor.on('component:update', async (editor) => {
+      // worker.postMessage({
+      //   action: 'encrypt',
+      //   payload: {
+      //     html: editor.getHtml(),
+      //     secretKey: secretKey || '',
+      //   },
+      // })
+
+      // worker.onmessage = (event) => {
+      //   if (event.data.action === 'encrypted') {
+      //     console.log('Encrypted HTML:', event.data.payload)
+      //   }
+      // }
+
+      editor && value ? handleSave() : null
     })
 
     editor.BlockManager.add('text-block', {
@@ -107,14 +137,12 @@ const Grapes = ({ref, value, onChange}) => {
     // Add further GrapesJS configuration here for blocks, styling, etc.
     setEditor(editor)
     return () => {
+      editor.off('component:update')
+      editor.off('load')
+
       editor.destroy() // Clean up the GrapesJS instance
     }
   }, [set])
-
-  const handleSave = () => {
-    console.log(editor)
-    onChange(set(encryptHtml(editor?.getHtml())))
-  }
 
   // Handle saving content
 

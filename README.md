@@ -1,13 +1,17 @@
+## Custom GrapesJS Editor in Sanity Studio
+
 ## ALPHA VERSION "1.0.1", USE WITH CAUTION
 
-## Custom GrapesJS and Tiptap Editor for Sanity Studio
-
-In this Sanity Studio project, we've integrated a custom Tiptap editor and GrapesJS to offer a comprehensive, interactive, and user-friendly content editing experience. This setup allows for intuitive drag & drop functionality, extensive customization, and real-time updates.
+In this Sanity Studio project, we've integrated GrapesJS to offer a comprehensive, interactive, and user-friendly content editing experience. This setup allows for intuitive drag & drop functionality, extensive customization, and real-time updates.
 
 ### Features
 
-- **Drag & Drop:** Seamlessly rearrange your content with drag and drop capabilities, provided by both Tiptap and GrapesJS editors.
-- **Customizable:** Fully tailor the editor's appearance and functionality to meet your project's specific needs, leveraging GrapesJS's component builder and Tiptap's flexible schema.
+here is a video preview!
+
+[![sneak peak!](https://i.stack.imgur.com/Vp2cE.png)](https://stream.mux.com/r3rIfRUWkSvJjjzrpiLrFxXlR8vXI82lW302Yg00Rt01LI.m3u8?redundant_streams=true)
+
+- **Drag & Drop:** Seamlessly rearrange your content with drag and drop capabilities
+- **Customizable:** Fully tailor the editor's appearance and functionality to meet your project's specific needs, leveraging GrapesJS's component builder.
 - **Real-Time Updates:** Ensure all users view the most current content with real-time changes.
 - **Client/Server-Side Encryption:** Secure your content with encryption, enhancing data privacy.
 - **TailwindCSS Integration:** Utilize TailwindCSS for styling, ensuring a consistent and modern design system without side loading any CSS.
@@ -60,4 +64,4 @@ pnpm i vercel@latest
 
 ### Additional Information
 
-For more detailed information on using the custom GrapesJS and Tiptap editor, refer to the project's documentation or the repo owner. This README aims to guide you through the basic setup and highlight the unique features of combining GrapesJS with Tiptap in Sanity Studio, offering an unparalleled editing experience.
+For more detailed information on using the custom GrapesJS editor, refer to the project's documentation or the repo owner. This README aims to guide you through the basic setup and highlight the unique features of combining GrapesJS with in Sanity Studio, offering an unparalleled editing experience.
