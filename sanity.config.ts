@@ -14,8 +14,8 @@ export default defineConfig({
   name: 'default',
   title: 'My Sanity Project',
 
-  projectId: process.env.SANITY_STUDIO_API_PROJECT_ID || '',
-  dataset: process.env.SANITY_STUDIO_API_DATASET || 'production',
+  projectId: 'dholx6dc',
+  dataset: 'encrypted',
 
   plugins: [
     singletonPlugin(['home', 'settings']),
