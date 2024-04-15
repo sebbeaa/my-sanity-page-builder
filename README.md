@@ -6,6 +6,7 @@ In this Sanity Studio project, we've integrated GrapesJS to offer a comprehensiv
 
 ### Features
 
+
 here is a video preview!
 
 [![sneak peak!](https://i.stack.imgur.com/Vp2cE.png)](https://stream.mux.com/r3rIfRUWkSvJjjzrpiLrFxXlR8vXI82lW302Yg00Rt01LI.m3u8?redundant_streams=true)
