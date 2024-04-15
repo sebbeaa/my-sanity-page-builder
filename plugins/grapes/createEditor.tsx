@@ -90,9 +90,9 @@ const Grapes = ({ref, value, onChange}) => {
       },
     ])
 
-    editor.on('load', () => {
+    editor.onReady(async () => {
       // Decrypt the content when the editor is loaded
-      if (!value) return
+      if (!editor) return
       editor.setComponents(decryptHtml(value))
     })
 
