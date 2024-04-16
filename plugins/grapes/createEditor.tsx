@@ -7,7 +7,6 @@ import {set} from 'sanity'
 import React, {useEffect, useRef, useState} from 'react'
 import grapesjs from 'grapesjs'
 import plugin from 'grapesjs-tailwind'
-const worker = new Worker(new URL('./cryptoWorker.js', import.meta.url))
 
 const handleFileChange = async (event) => {
   const file = event.target.files[0]
@@ -60,11 +59,11 @@ const Editor = React.forwardRef((props, ref) => {
 const Grapes = ({ref, value, onChange}) => {
   ref = useRef(null)
   const [editor, setEditor] = useState(null)
-  const [encryptedHtml, setEncryptedHtml] = useState('')
+  // const [encryptedHtml, setEncryptedHtml] = useState('')
   const handleSave = async () => {
     try {
       if (!editor) return
-      setEncryptedHtml(encryptHtml(editor.getHtml()))
+      const encryptedHtml = encryptHtml(editor.getHtml())
       await onChange(set(encryptedHtml))
     } catch (error) {
       console.error('Error in handleSave:', error)
