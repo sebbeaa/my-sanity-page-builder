@@ -1,5 +1,5 @@
-import {DocumentIcon} from '@sanity/icons'
-import {defineField, defineType} from 'sanity'
+import { DocumentIcon } from '@sanity/icons'
+import { defineField, defineType } from 'sanity'
 import Editor from '../../plugins/grapes/createEditor'
 
 export default defineType({
@@ -8,21 +8,6 @@ export default defineType({
   title: 'Page',
   icon: DocumentIcon,
   fields: [
-    defineField({
-      type: 'string',
-      name: 'title',
-      title: 'Title',
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      type: 'slug',
-      name: 'slug',
-      title: 'Slug',
-      options: {
-        source: 'title',
-      },
-      validation: (rule) => rule.required(),
-    }),
     defineField({
       name: 'iframe',
       title: 'IFrame',
@@ -44,7 +29,7 @@ export default defineType({
     select: {
       title: 'title',
     },
-    prepare({title}) {
+    prepare({ title }) {
       return {
         subtitle: 'Private Page',
         title,
