@@ -15,6 +15,16 @@
     "jsx": "preserve",
     "incremental": true
   },
+<<<<<<< HEAD
   "include": ["**/*.ts", "**/*.tsx", "worker-loader/cryptoWorker.js"],
+=======
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "worker-loader/cryptoWorker.js",
+    "vite.config.js"
+  ],
+  "include": ["**/*.ts", "**/*.tsx"],
+>>>>>>> f8ed1ff (removed unused deps)
   "exclude": ["node_modules"]
 }

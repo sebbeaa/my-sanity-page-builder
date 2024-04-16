@@ -1,14 +1,15 @@
-import {TypeReference, defineConfig} from 'sanity'
-import {media} from 'sanity-plugin-media'
-import {structureTool} from 'sanity/structure'
+import client from './vite.config'
+import { media } from 'sanity-plugin-media'
+import { structureTool } from 'sanity/structure'
 
 import home from './schemas/singletons/home'
 import settings from './schemas/singletons/settings'
 
 import page from './schemas/documents/page'
-import {singletonPlugin} from './plugins/settings'
-import {pageStructure} from './plugins/settings'
+import { singletonPlugin } from './plugins/settings'
+import { pageStructure } from './plugins/settings'
 import htmlEditor from './plugins/grapes'
+import { defineConfig } from 'sanity'
 
 export default defineConfig({
   name: 'default',

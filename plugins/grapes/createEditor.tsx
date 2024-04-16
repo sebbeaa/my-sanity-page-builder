@@ -147,7 +147,7 @@ const Grapes = ({ref, value, onChange}) => {
 
   return (
     <>
-      <div style={{overflow: 'visible', width: '100%'}}>
+      <div style={{overflow: 'visible', position: 'absolute', width: '100%', height: '100%'}}>
         <div ref={ref} style={{maxHeight: '700px', height: '500px', width: '100%'}} />
         <Flex gap={2} marginTop={2}>
           <Button onClick={editor?.getHtml() && handleSave} text="Save Content" tone="primary" />
