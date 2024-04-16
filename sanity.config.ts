@@ -1,4 +1,3 @@
-import client from './vite.config'
 import { media } from 'sanity-plugin-media'
 import { structureTool } from 'sanity/structure'
 
@@ -15,8 +14,8 @@ export default defineConfig({
   name: 'default',
   title: 'My Sanity Project',
 
-  projectId: 'dholx6dc',
-  dataset: 'encrypted',
+  projectId: import.meta.env.VITE_SANITY_PROJECT_ID,
+  dataset: import.meta.env.VITE_SANITY_DATASET,
 
   plugins: [
     singletonPlugin(['home', 'settings']),
