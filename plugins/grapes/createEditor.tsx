@@ -13,8 +13,8 @@ import { decryptHtml, encryptHtml, handleFileChange } from '../crypto/encryption
 // Editor component
 
 // Custom React GrapesJS editor component
-const Grapes = ({ ref, value, onChange }) => {
-  ref = useRef(null)
+const Grapes = ({ value, onChange }) => {
+  const ref = useRef(null)
   const [editor, setEditor] = useState(null)
   const handleSave = async () => {
     try {
@@ -89,7 +89,7 @@ const Grapes = ({ ref, value, onChange }) => {
 
 const Editor = React.forwardRef((props, ref) => {
   const { value, onChange } = props
-  return <Grapes ref={ref} value={value} onChange={onChange} />
+  return <Grapes value={value} onChange={onChange} />
 })
 
 export default Editor
