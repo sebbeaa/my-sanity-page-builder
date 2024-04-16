@@ -1,8 +1,8 @@
-## Custom GrapesJS Editor in Sanity Studio
+## Visual GrapesJS / HTML Editor in the Sanity.io Studio
 
 ## ALPHA VERSION "1.0.1", USE WITH CAUTION
 
-In this Sanity Studio project, we've integrated GrapesJS to offer a comprehensive, interactive, and user-friendly content editing experience. This setup allows for intuitive drag & drop functionality, extensive customization, and real-time updates.
+In this Sanity Studio project, we've integrated GrapesJS to offer a comprehensive, interactive, and user-friendly visual content / UI editing experience. This setup allows for intuitive drag & drop functionality, extensive customization, and real-time updates.
 
 ### Features
 
