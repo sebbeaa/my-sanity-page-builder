@@ -7,7 +7,6 @@ import {set} from 'sanity'
 import React, {useEffect, useRef, useState} from 'react'
 import grapesjs from 'grapesjs'
 import plugin from 'grapesjs-tailwind'
-const worker = new Worker(new URL('./cryptoWorker.js', import.meta.url))
 
 const handleFileChange = async (event) => {
   const file = event.target.files[0]
