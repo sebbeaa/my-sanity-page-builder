@@ -12,7 +12,7 @@ import { decryptHtml, encryptHtml, handleFileChange } from '../crypto/encryption
 
 // Editor component
 
-// GrapesJS editor component
+// Custom React GrapesJS editor component
 const Grapes = ({ ref, value, onChange }) => {
   ref = useRef(null)
   const [editor, setEditor] = useState(null)
