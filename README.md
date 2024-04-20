@@ -23,7 +23,7 @@ here is a video preview!
 - [ ] Enhance drag & drop functionality for smoother interactions.
 - [x] Introduce more customization options for both editors.
 - [ ] Implement real-time collaboration features for team editing.
-- [ ] Improve server-side encryption for enhanced security.
+- [ ] Improve server-side encryption for enhanced security / performance (hint: using web workers / a node.js child process would do the trick).
 - [ ] Develop comprehensive documentation for easy setup and usage.
 - [x] Integrate TailwindCSS and dynamic floating panels for a seamless design experience. thanks to [Ju99ernaut](https://github.com/Ju99ernaut/grapesjs-tailwind)
 - [ ] Write the press release
