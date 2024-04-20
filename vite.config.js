@@ -1,5 +1,6 @@
-import worker from 'vite-plugin-worker'
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
-export default {
-  plugins: [worker()],
-}
+export default defineConfig({
+  plugins: [react()],
+})

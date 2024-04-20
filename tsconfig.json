@@ -15,6 +15,7 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["**/*.ts", "**/*.tsx", "worker-loader/cryptoWorker.js"],
+  "include": ["**/*.ts", "**/*.tsx", "worker-loader/cryptoWorker.js", "vite.config.js"],
+  "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

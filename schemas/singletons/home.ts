@@ -1,5 +1,5 @@
-import {HomeIcon} from '@sanity/icons'
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import { HomeIcon } from '@sanity/icons'
+import { defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'home',
@@ -11,11 +11,12 @@ export default defineType({
   fields: [
     defineField({
       name: 'title',
-      description: 'This field is the title of your personal website.',
-      title: 'Title',
       type: 'string',
-      validation: (rule) => rule.required(),
+      title: 'Title',
+      hidden: true,
+      initialValue: 'Home',
     }),
+
     defineField({
       name: 'content',
       type: 'content',
@@ -23,12 +24,11 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'title',
+      title: 'Home',
     },
-    prepare({title}) {
+    prepare({}) {
       return {
         subtitle: 'Home',
-        title,
       }
     },
   },
