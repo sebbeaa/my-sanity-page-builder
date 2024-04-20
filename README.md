@@ -20,13 +20,14 @@ here is a video preview!
 
 ### Todo
 
-1. Enhance drag & drop functionality for smoother interactions.
-2. ~~Introduce more customization options for both editors.~~
-3. Implement real-time collaboration features for team editing.
-4. Improve server-side encryption for enhanced security.
-5. Develop comprehensive documentation for easy setup and usage.
-6. Write unit tests to ensure reliability and stability.
-7. ~~Integrate TailwindCSS and dynamic floating panels for a seamless design experience.~~ thanks to (Ju99ernaut)[https://github.com/Ju99ernaut/grapesjs-tailwind]
+- [ ] Enhance drag & drop functionality for smoother interactions.
+- [x] Introduce more customization options for both editors.
+- [ ] Implement real-time collaboration features for team editing.
+- [ ] Improve server-side encryption for enhanced security.
+- [ ] Develop comprehensive documentation for easy setup and usage.
+- [x] Integrate TailwindCSS and dynamic floating panels for a seamless design experience. thanks to [Ju99ernaut](https://github.com/Ju99ernaut/grapesjs-tailwind)
+- [ ] Write the press release
+- [ ] Contact the media
 
 
 ### Installation and Deployment
