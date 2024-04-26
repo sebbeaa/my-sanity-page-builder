@@ -98,7 +98,7 @@ const Grapes = ({
       editor.destroy() // Clean up the GrapesJS instance
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [set, value, onChange, ref])
+  }, [ref])
 
   return (
     <>
