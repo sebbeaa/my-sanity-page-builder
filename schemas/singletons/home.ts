@@ -10,16 +10,15 @@ export default defineType({
   // liveEdit: true,
   fields: [
     defineField({
+      name: 'content',
+      type: 'content',
+    }),
+    defineField({
       name: 'title',
       type: 'string',
       title: 'Title',
       hidden: true,
       initialValue: 'Home',
-    }),
-
-    defineField({
-      name: 'content',
-      type: 'content',
     }),
   ],
   preview: {

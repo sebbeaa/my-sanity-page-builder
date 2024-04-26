@@ -1,6 +1,7 @@
-//@ts-nocheck
-import {type DocumentDefinition} from 'sanity'
-import {type StructureResolver} from 'sanity/structure'
+import { type DocumentDefinition } from 'sanity'
+import { type StructureResolver } from 'sanity/structure'
+import MyEditor from './grapes/createEditor'
+import { CogIcon } from '@sanity/icons'
 
 export const singletonPlugin = (types: string[]) => {
   return {
@@ -8,7 +9,7 @@ export const singletonPlugin = (types: string[]) => {
     document: {
       // Hide 'Singletons (such as Home)' from new document options
       // https://user-images.githubusercontent.com/81981/195728798-e0c6cf7e-d442-4e58-af3a-8cd99d7fcc28.png
-      newDocumentOptions: (prev, {creationContext}) => {
+      newDocumentOptions: (prev, { creationContext }) => {
         if (creationContext.type === 'global') {
           return prev.filter((templateItem) => !types.includes(templateItem.templateId))
         }
@@ -16,9 +17,9 @@ export const singletonPlugin = (types: string[]) => {
         return prev
       },
       // Removes the "duplicate" action on the Singletons (such as Home)
-      actions: (prev, {schemaType}) => {
+      actions: (prev, { schemaType }) => {
         if (types.includes(schemaType)) {
-          return prev.filter(({action}) => action !== 'duplicate')
+          return prev.filter(({ action }) => action !== 'duplicate')
         }
 
         return prev
@@ -31,22 +32,33 @@ export const singletonPlugin = (types: string[]) => {
 // like how "Home" is handled.
 export const pageStructure = (typeDefArray: DocumentDefinition[]): StructureResolver => {
   return (S) => {
-    // Goes through all of the singletons that were provided and translates them into something the
-    // Desktool can understand
     const singletonItems = typeDefArray.map((typeDef) => {
+      if (typeDef.name === 'page') {
+        // Assuming 'page' is where we want to use MyEditor
+        return S.listItem()
+          .title(typeDef.title!)
+          .icon(typeDef.icon)
+          .child(
+            S.editor()
+              .id(typeDef.name)
+              .schemaType(typeDef.name)
+              .documentId(typeDef.name)
+              .views([S.view.component(MyEditor).title('Edit').icon(CogIcon), S.view.form()]),
+          )
+      }
+
       return S.listItem()
         .title(typeDef.title!)
         .icon(typeDef.icon)
         .child(S.editor().id(typeDef.name).schemaType(typeDef.name).documentId(typeDef.name))
     })
 
-    // The default root list items (except custom ones)
     const defaultListItems = S.documentTypeListItems().filter(
       (listItem) => !typeDefArray.find((singleton) => singleton.name === listItem.getId()),
     )
 
     return S.list()
-      .title('Page')
+      .title('Content')
       .items([...singletonItems, S.divider(), ...defaultListItems])
   }
 }

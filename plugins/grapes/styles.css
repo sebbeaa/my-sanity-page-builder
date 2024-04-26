@@ -26,14 +26,14 @@ html {
   border-bottom: 1px solid #d0d0d0; /* Border at the bottom of the grid */
   min-width: none;
   max-width: none;
-  width: 100%; /* Full width */
+  min-width: 0 !important;
   justify-content: center;
   align-items: center;
   resize: vertical;
 }
 
 .gjs-frame-wrapper {
-  width: 100%;
+  min-width: 0 !important;
 }
 
 .gjs-pn-panel {
@@ -55,4 +55,7 @@ html {
   width: 100%;
 }
 
+#Home-home-0 {
+  min-width: unset !important;
+}
 /* Highlight grid item on drag over */

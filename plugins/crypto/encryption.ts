@@ -1,6 +1,6 @@
 import CryptoJS from 'crypto-js'
 
-const secretKey: null | string = process.env.SANITY_PRIVATE_KEY || null
+const secretKey: null | string = process.env.SANITY_PRIVATE_KEY || ''
 
 // Encrypt content function (unchanged)
 export const encryptHtml = (html: string): string =>
