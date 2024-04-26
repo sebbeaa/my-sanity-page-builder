@@ -92,12 +92,15 @@ const Grapes = ({ value, setHtml }: { setHtml: any; value: string }) => {
           <Flex gap={2} marginTop={2}>
             <Button onClick={handleSave} text="Save Content" tone="primary" />
           </Flex>
-          <input
-            type="file"
-            id="file-input"
-            style={{ display: 'none' }}
-            onChange={handleFileChange}
-          />
+
+          <>
+            <input
+              type="file"
+              id="file-input"
+              style={{ display: 'none' }}
+              onChange={(e) => handleFileChange(e, editor as Editor)}
+            />
+          </>
         </div>
       </>
     )

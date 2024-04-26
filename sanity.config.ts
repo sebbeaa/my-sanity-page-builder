@@ -14,8 +14,8 @@ export default defineConfig({
   name: 'default',
   title: 'My Sanity Project',
 
-  projectId: import.meta.env.VITE_SANITY_PROJECT_ID as string,
-  dataset: import.meta.env.VITE_SANITY_DATASET as string,
+  projectId: 'dholx6dc',
+  dataset: 'encrypted',
 
   plugins: [
     singletonPlugin(['home', 'settings']),
