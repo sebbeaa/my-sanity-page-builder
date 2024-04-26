@@ -16,18 +16,19 @@ export default defineType({
     defineField({
       name: 'title',
       type: 'string',
-      title: 'Title',
-      hidden: true,
+
       initialValue: 'Home',
+      hidden: true,
     }),
   ],
   preview: {
     select: {
-      title: 'Home',
+      title: 'title',
     },
-    prepare({}) {
+    prepare({ title }) {
       return {
         subtitle: 'Home',
+        title,
       }
     },
   },

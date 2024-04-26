@@ -8,6 +8,14 @@ export default defineType({
   icon: DocumentIcon,
   fields: [
     defineField({
+      type: 'string',
+      name: 'title',
+      title: 'Title',
+      initialValue: 'New Page' as any,
+      validation: (rule) => rule.required(),
+      hidden: true,
+    }),
+    defineField({
       name: 'content',
       type: 'content',
     }),

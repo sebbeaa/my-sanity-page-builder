@@ -9,7 +9,7 @@ const MyEditor = forwardRef((props, ref) => {
   useEffect(() => {
     html && onChange(set(html))
   }, [html])
-  return <Grapes setHtml={setHtml} ref={ref} value={value} onChange={onChange} />
+  return <Grapes setHtml={setHtml} value={value} />
 })
 
 export default defineField({

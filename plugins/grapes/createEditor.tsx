@@ -15,7 +15,7 @@ import { decryptHtml, encryptHtml, handleFileChange } from '../crypto/encryption
 const Grapes = ({ value, setHtml }: { setHtml: any; value: string }) => {
   const ref = useRef(null)
   const [editor, setEditor] = useState<null | Editor>(null)
-  const handleSave = async () => {
+  const handleSave = () => {
     if (editor) {
       const html = editor?.getHtml()
       const encryptedHtml = encryptHtml(html)
@@ -27,6 +27,8 @@ const Grapes = ({ value, setHtml }: { setHtml: any; value: string }) => {
     // Initialize GrapesJS
     const editor = grapesjs.init({
       container: ref.current as string | HTMLElement | any,
+      fromElement: true,
+
       plugins: [plugin],
       storageManager: {
         type: 'local',
@@ -43,9 +45,7 @@ const Grapes = ({ value, setHtml }: { setHtml: any; value: string }) => {
       if (!editor) return
       editor.setComponents(decryptHtml(value))
     })
-    editor.on('component:update', async (editor) => {
-      editor && value ? handleSave() : null
-    })
+    editor.on('component:update', async (editor) => handleSave)
     editor.Commands.add('save', {
       run: function (editor, sender) {
         sender && sender.set('active', 0) // Turn off the button
@@ -66,6 +66,8 @@ const Grapes = ({ value, setHtml }: { setHtml: any; value: string }) => {
       editor && value ? handleSave() : null
     })
 
+    setEditor(editor)
+
     // Clean up
     return () => {
       editor.destroy() // Clean up the GrapesJS instance
@@ -73,23 +75,32 @@ const Grapes = ({ value, setHtml }: { setHtml: any; value: string }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref])
 
-  return (
-    <>
-      // Editor component
-      <div style={{ overflow: 'visible', position: 'absolute', width: '100%', height: '100%' }}>
-        <div ref={ref} style={{ maxHeight: '700px', height: '500px', width: '100%' }} />
-        <Flex gap={2} marginTop={2}>
-          <Button onClick={handleSave} text="Save Content" tone="primary" />
-        </Flex>
-        <input
-          type="file"
-          id="file-input"
-          style={{ display: 'none' }}
-          onChange={handleFileChange}
-        />
-      </div>
-    </>
-  )
+  if (ref)
+    return (
+      <>
+        // Editor component
+        <div
+          style={{
+            overflow: 'visible',
+            position: 'absolute',
+            top: '-120px',
+            width: '100%',
+            height: '100%',
+          }}
+        >
+          <div ref={ref} style={{ height: '100%', width: '100vw', margin: '0 auto' }} />
+          <Flex gap={2} marginTop={2}>
+            <Button onClick={handleSave} text="Save Content" tone="primary" />
+          </Flex>
+          <input
+            type="file"
+            id="file-input"
+            style={{ display: 'none' }}
+            onChange={handleFileChange}
+          />
+        </div>
+      </>
+    )
 }
 
 export default Grapes
