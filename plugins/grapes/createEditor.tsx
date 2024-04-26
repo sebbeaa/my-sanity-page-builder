@@ -1,8 +1,7 @@
 import './styles.css'
 import 'grapesjs/dist/css/grapes.min.css'
 import { Button, Flex } from '@sanity/ui'
-import { StringInputProps, set } from 'sanity'
-import { forwardRef, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import grapesjs, { Editor } from 'grapesjs'
 //@ts-ignore
 import plugin from 'grapesjs-tailwind'
@@ -13,16 +12,7 @@ import { decryptHtml, encryptHtml, handleFileChange } from '../crypto/encryption
 // Editor component
 
 // Custom React GrapesJS editor component
-const Grapes = ({
-  value,
-  onChange,
-  setHtml,
-}: {
-  ref: any
-  setHtml: any
-  value: string
-  onChange: any
-}) => {
+const Grapes = ({ value, setHtml }: { setHtml: any; value: string }) => {
   const ref = useRef(null)
   const [editor, setEditor] = useState<null | Editor>(null)
   const handleSave = async () => {
@@ -72,24 +62,7 @@ const Grapes = ({
 
     // Add further GrapesJS configuration here for blocks, styling, etc....
 
-    // Set the editor state
-    setEditor(editor)
-
     editor.on('component:update', async (editor) => {
-      // worker.postMessage({
-      //   action: 'encrypt',
-      //   payload: {
-      //     html: editor.getHtml(),
-      //     secretKey: secretKey || '',
-      //   },
-      // })
-
-      // worker.onmessage = (event) => {
-      //   if (event.data.action === 'encrypted') {
-      //     console.log('Encrypted HTML:', event.data.payload)
-      //   }
-      // }
-
       editor && value ? handleSave() : null
     })
 
