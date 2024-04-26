@@ -16,13 +16,11 @@ import { decryptHtml, encryptHtml, handleFileChange } from '../crypto/encryption
 const Grapes = ({
   value,
   onChange,
-  html,
   setHtml,
 }: {
   ref: any
   setHtml: any
-  html: any
-  value: StringInputProps
+  value: string
   onChange: any
 }) => {
   const ref = useRef(null)
@@ -53,7 +51,10 @@ const Grapes = ({
     editor.onReady(async () => {
       // Decrypt the content when the editor is loaded
       if (!editor) return
-      editor.setComponents(decryptHtml(html))
+      editor.setComponents(decryptHtml(value))
+    })
+    editor.on('component:update', async (editor) => {
+      editor && value ? handleSave() : null
     })
     editor.Commands.add('save', {
       run: function (editor, sender) {
@@ -118,13 +119,4 @@ const Grapes = ({
   )
 }
 
-const MyEditor = forwardRef((props, ref) => {
-  const { value, onChange }: any = props
-  const [html, setHtml] = useState(value)
-  useEffect(() => {
-    html && onChange(set(html))
-  }, [html])
-  return <Grapes html={html} setHtml={setHtml} ref={ref} value={value} onChange={onChange} />
-})
-
-export default MyEditor
+export default Grapes
