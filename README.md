@@ -16,6 +16,7 @@ here is a video preview!
 - **Client/Server-Side Encryption:** Secure your content with encryption, enhancing data privacy.
 - **TailwindCSS Integration:** Utilize TailwindCSS for styling, ensuring a consistent and modern design system without side loading any CSS.
 - **Dynamic Floating Panels:** Create a robust foundation for a very customizable component builder within the studio itself, leveraging the best of GrapesJS.
+- **Global Components / blocks:** Add global blocks / components in the studio!
 
 ### Todo
 
@@ -62,6 +63,15 @@ pnpm i vercel@latest
 ```
 
 ---
+
+git add / stage / commit / sync :
+
+```zsh
+git add .
+git stage .
+git commit -m "Commit message"
+git push
+```
 
 ### Additional Information
 
