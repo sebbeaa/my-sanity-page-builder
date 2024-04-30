@@ -9,13 +9,14 @@ import { singletonPlugin } from './plugins/settings'
 import { pageStructure } from './plugins/settings'
 import htmlEditor from './plugins/grapes'
 import { defineConfig } from 'sanity'
+import globalBlocks from './schemas/singletons/globalBlocks'
 
 export default defineConfig({
   name: 'default',
   title: 'My Sanity Project',
 
-  projectId: 'dholx6dc',
-  dataset: 'encrypted',
+  projectId: 'your-project-id',
+  dataset: 'production',
 
   plugins: [
     singletonPlugin(['home', 'settings']),
@@ -26,6 +27,7 @@ export default defineConfig({
     // https://www.sanity.io/docs/the-vision-plugin
     media(),
     htmlEditor,
+    globalBlocks,
   ],
 
   schema: {
@@ -37,6 +39,7 @@ export default defineConfig({
       // Documents
       page,
       htmlEditor,
+      globalBlocks,
     ],
   },
 })

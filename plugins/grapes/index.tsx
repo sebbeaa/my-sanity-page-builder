@@ -1,22 +1,19 @@
-import { forwardRef, useEffect, useState } from 'react'
 import { defineField, set } from 'sanity'
 
 import Grapes from './createEditor'
 
-const MyEditor = forwardRef((props, ref) => {
-  const { value, onChange }: any = props
-  const [html, setHtml] = useState(value)
-  useEffect(() => {
-    html && onChange(set(html))
-  }, [html])
-  return <Grapes setHtml={setHtml} value={value} />
-})
+export const MyEditor = (props: any) => {
+  const { id, value, onChange } = props
+  return <Grapes value={value} onchange={onChange} id={id} set={set} />
+}
 
 export default defineField({
   name: 'content',
   type: 'string',
-  title: 'HTML',
+  title: 'Content',
   components: {
-    input: MyEditor as any,
+    input: (props) => {
+      return <MyEditor {...props} />
+    },
   },
 })

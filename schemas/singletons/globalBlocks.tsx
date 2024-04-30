@@ -1,23 +1,26 @@
-import { DocumentIcon } from '@sanity/icons'
+import { BlockElementIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
+import { MyEditor } from '../../plugins/grapes'
+
+// schemas/singletons/globalBlocks.ts
 
 export default defineType({
+  name: 'globalBlocks',
+  title: 'Global Blocks',
   type: 'document',
-  name: 'page',
-  title: 'Page',
-  icon: DocumentIcon,
+  icon: BlockElementIcon,
   fields: [
     defineField({
       type: 'string',
       name: 'title',
       title: 'Title',
-      initialValue: 'New Page',
+      initialValue: 'New Global Block',
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'pageContent',
-      title: 'Page Content',
+      name: 'globalContent',
       type: 'content',
+      title: 'Global Content',
     }),
   ],
   preview: {
@@ -26,7 +29,7 @@ export default defineType({
     },
     prepare({ title }) {
       return {
-        subtitle: 'Private Page',
+        subtitle: 'Global Blocks',
         title,
       }
     },

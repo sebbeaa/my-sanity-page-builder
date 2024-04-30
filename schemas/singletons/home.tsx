@@ -1,5 +1,6 @@
 import { HomeIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
+import { MyEditor } from '../../plugins/grapes'
 
 export default defineType({
   name: 'home',
@@ -10,8 +11,14 @@ export default defineType({
   // liveEdit: true,
   fields: [
     defineField({
-      name: 'content',
+      name: 'homeContent',
       type: 'content',
+      title: 'Home Content',
+      components: {
+        input: (props) => {
+          return <MyEditor {...props} documentType={props.schemaType.name} />
+        },
+      },
     }),
     defineField({
       name: 'title',
