@@ -31,7 +31,7 @@ here is a video preview!
 
 ### Installation and Deployment
 
-Follow these steps to install and deploy the app in your local environment (ensure pnpm is set up with this project):
+Follow these steps to install and deploy the app in your local environment (ensure pnpm is set up with this project) then deploy it to vercel easily as shown below:
 
 ```zsh
 pnpm i
@@ -40,7 +40,7 @@ pnpm dev
 pnpm build
 pnpm start
 
-pnpm deploy
+vercel
 ```
 
 ### Configuration
