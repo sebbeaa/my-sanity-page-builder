@@ -2,33 +2,35 @@ import { Button, Flex } from '@sanity/ui'
 import { useEffect, useRef, useState } from 'react'
 import { useBlocks } from './editor/Blocks'
 import { usePanels } from './editor/Panels'
+
 import grapesjs, { Editor } from 'grapesjs'
+//@ts-ignore
 //@ts-ignore
 import tailwindPlugin from 'grapesjs-tailwind'
 //@ts-ignore
 import plugin from 'grapesjs-component-code-editor'
+import './styles.css'
 import 'grapesjs/dist/css/grapes.min.css'
 import 'grapesjs-component-code-editor/dist/grapesjs-component-code-editor.min.css'
-import 'grapesjs-plugin-toolbox/dist/grapesjs-plugin-toolbox.min.css'
-import './styles.css'
 
 import { createClient } from '@sanity/client'
-import imageUrlBuilder from '@sanity/image-url'
-import { dataset, projectId, token } from '../api'
+import { dataset, projectId, token } from './api'
 
-const client = createClient({
-  projectId: projectId,
-  dataset: dataset,
-  apiVersion: '2024-01-29',
-  useCdn: false, // `false` if you want fresh data
-  token: token,
-})
+const pId = projectId
+const dSet = dataset
+const t = token
 
 // Custom React GrapesJS editor component
 const Grapes = ({ value, onchange, set, id }: { value: any; onchange: any; set: any; id: any }) => {
   const ref = useRef<HTMLDivElement>(null)
   const [editor, setEditor] = useState<null | Editor>(null)
-
+  const client = createClient({
+    projectId: pId,
+    dataset: dSet,
+    apiVersion: '2024-01-29',
+    useCdn: false, // `false` if you want fresh data
+    token: t,
+  })
   const handleSave = () => {
     if (editor) {
       const html = editor?.getHtml()
@@ -46,12 +48,14 @@ const Grapes = ({ value, onchange, set, id }: { value: any; onchange: any; set: 
       reader.readAsArrayBuffer(file)
       reader.onload = async () => {
         // Upload the encrypted file to Sanity
-        const asset = await client.assets.upload('file', new File([file], file.name, {}), {
-          filename: file.name,
-        })
+        const asset =
+          client &&
+          (await client?.assets?.upload('file', new File([file], file.name, {}), {
+            filename: file.name,
+          }))
 
         // Check if the asset was uploaded successfully and add it to the GrapesJS Asset Manager
-        if (asset?._id) {
+        if (asset) {
           const assetUrl = `https://cdn.sanity.io/files/${client.config().projectId}/${client.config().dataset}/${asset._id}.${asset.extension}`
           editor.AssetManager.add({
             src: assetUrl,

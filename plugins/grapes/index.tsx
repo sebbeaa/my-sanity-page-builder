@@ -12,7 +12,7 @@ export default defineField({
   type: 'string',
   title: 'Content',
   components: {
-    input: (props) => {
+    input: (props: any) => {
       return <MyEditor {...props} />
     },
   },

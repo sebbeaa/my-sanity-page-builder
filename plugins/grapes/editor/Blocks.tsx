@@ -43,10 +43,11 @@ export const useBlocks = async (editor: Editor, client: any) => {
     if (component.get('id') === 'blog-posts-container') {
       const container = editor.getWrapper()?.find('#all-blog-posts')[0]
 
-      client.fetch('*[_type == "blog"][0..5]').then((blogPosts: any) => {
-        blogPosts.map((post: any, i: number) => {
-          if (!addedPosts.has(post._id)) {
-            const postContent = `
+      client &&
+        client.fetch('*[_type == "blog"][0..5]').then((blogPosts: any) => {
+          blogPosts.map((post: any, i: number) => {
+            if (!addedPosts.has(post._id)) {
+              const postContent = `
           <div class="p-4 md:w-1/3">
             <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
               <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="${urlFor(post.thumbnail)}" alt="${post.title}">
@@ -59,32 +60,33 @@ export const useBlocks = async (editor: Editor, client: any) => {
             </div>
           </div>
         `
-            container?.append(postContent)
-            addedPosts.add(post._id)
-            editor.BlockManager.add(post._id, {
-              label: post.title,
-              content: postContent,
-              category: 'Blog',
-            })
-          }
+              container?.append(postContent)
+              addedPosts.add(post._id)
+              editor.BlockManager.add(post._id, {
+                label: post.title,
+                content: postContent,
+                category: 'Blog',
+              })
+            }
+          })
         })
-      })
     }
   })
 
-  await client.fetch('*[_type == "globalBlocks"]').then((blocks: any) => {
-    // Initialize your GrapesJS editor here
-    // and load the blocks into the editor
-    console.log(blocks)
-    if (blocks.length === 0) return
-    blocks.forEach((block: any) => {
-      editor.BlockManager.add(block.id, {
-        label: 'Global Block - ' + block.title,
-        content: block.globalContent,
-        category: 'Global Blocks',
+  ;(await client) &&
+    client.fetch('*[_type == "globalBlocks"]').then((blocks: any) => {
+      // Initialize your GrapesJS editor here
+      // and load the blocks into the editor
+      console.log(blocks)
+      if (blocks.length === 0) return
+      blocks.forEach((block: any) => {
+        editor.BlockManager.add(block.id, {
+          label: 'Global Block - ' + block.title,
+          content: block.globalContent,
+          category: 'Global Blocks',
+        })
       })
     })
-  })
   editor.BlockManager.add('text-block', {
     label: 'Text',
     content: '<div data-gjs-type="text">Insert your text here</div>',

@@ -1,6 +1,6 @@
 import { media } from 'sanity-plugin-media'
 import { structureTool } from 'sanity/structure'
-
+import { getStudioEnvironmentVariables } from 'sanity/cli'
 import home from './schemas/singletons/home'
 import settings from './schemas/singletons/settings'
 
@@ -11,7 +11,7 @@ import htmlEditor from './plugins/grapes'
 import { defineConfig } from 'sanity'
 import globalBlocks from './schemas/singletons/globalBlocks'
 import blogPost from './schemas/documents/blog'
-import { dataset, projectId } from './plugins/api'
+import { dataset, projectId, token } from './plugins/grapes/api'
 
 export default defineConfig({
   name: 'default',
@@ -46,3 +46,5 @@ export default defineConfig({
     ],
   },
 })
+
+export { projectId, dataset, token }

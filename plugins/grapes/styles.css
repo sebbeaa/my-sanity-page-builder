@@ -11,9 +11,8 @@ html {
   margin: 5px;
 }
 
-.gjs-pn {
-  height: min-content;
-  overflow: scroll;
+.gjs-pn-views {
+  overflow-x: scroll;
   background-color: #1f2022; /* Light gray, adjust to match Sanity.io */
 }
 

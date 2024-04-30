@@ -1,7 +1,7 @@
 {
   "name": "my-sanity-project",
   "private": true,
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "package.json",
   "license": "UNLICENSED",
   "scripts": {
@@ -31,9 +31,10 @@
     "react-dom": "^18.2.0",
     "react-icons": "^5.1.0",
     "react-is": "^18.2.0",
-    "sanity": "^3.37.2",
+    "sanity": "^3.40.0",
     "sanity-plugin-media": "^2.2.5",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.8",
+    "vite": "^5.2.10"
   },
   "devDependencies": {
     "@sanity/eslint-config-studio": "^3.0.1",

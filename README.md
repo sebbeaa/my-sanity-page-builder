@@ -1,6 +1,6 @@
 ## Visual GrapesJS / HTML Editor in the Sanity.io Studio
 
-## VERSION "1.0.4"
+## VERSION "1.0.5"
 
 In this Sanity Studio project, we've integrated GrapesJS to offer a comprehensive, interactive, and user-friendly visual content / UI editing experience. This setup allows for intuitive drag & drop functionality, extensive customization, global blocks / components, and real-time updates.
 
@@ -48,9 +48,9 @@ pnpm deploy
 Setup a [sanity.io](https://sanity.io) studio using the cli, their api, or via their website! then add the necessary ids, datasets & tokens, refer to their docs if you have issues finding them!
 
 ```.env
-    VITE_PROJECTID='YOUR_PROJECT_ID'
-    VITE_DATASET='YOUR_DATASET'
-    VITE_TOKEN='YOUR_READ_&_WRITE_TOKEN'
+    SANITY_STUDIO_PROJECT_ID='YOUR_PROJECT_ID'
+    SANITY_STUDIO_DATASET='YOUR_DATASET'
+    SANITY_STUDIO_TOKEN='YOUR_READ_&_WRITE_TOKEN'
 ```
 
 For deploying and fetching vars, especially if you have another Sanity project setup, you could use Vercel :
