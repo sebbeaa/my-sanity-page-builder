@@ -1,26 +1,34 @@
-import './styles.css'
-import 'grapesjs/dist/css/grapes.min.css'
 import { Button, Flex } from '@sanity/ui'
 import { useEffect, useRef, useState } from 'react'
+import { useBlocks } from './editor/Blocks'
+import { usePanels } from './editor/Panels'
 import grapesjs, { Editor } from 'grapesjs'
 //@ts-ignore
 import tailwindPlugin from 'grapesjs-tailwind'
-import { useBlocks } from './editor/Blocks'
-import { usePanels } from './editor/Panels'
+//@ts-ignore
+import plugin from 'grapesjs-component-code-editor'
+import 'grapesjs/dist/css/grapes.min.css'
+import 'grapesjs-component-code-editor/dist/grapesjs-component-code-editor.min.css'
+import 'grapesjs-plugin-toolbox/dist/grapesjs-plugin-toolbox.min.css'
+import './styles.css'
+
 import { createClient } from '@sanity/client'
+import imageUrlBuilder from '@sanity/image-url'
+import { dataset, projectId, token } from '../api'
 
 const client = createClient({
-  projectId: 'YOUR_PROJECT_ID',
-  dataset: 'YOUR_DATASET',
+  projectId: projectId,
+  dataset: dataset,
   apiVersion: '2024-01-29',
-  useCdn: false,
+  useCdn: false, // `false` if you want fresh data
+  token: token,
 })
 
 // Custom React GrapesJS editor component
 const Grapes = ({ value, onchange, set, id }: { value: any; onchange: any; set: any; id: any }) => {
   const ref = useRef<HTMLDivElement>(null)
   const [editor, setEditor] = useState<null | Editor>(null)
-  const [loading, setLoading] = useState(true)
+
   const handleSave = () => {
     if (editor) {
       const html = editor?.getHtml()
@@ -58,27 +66,19 @@ const Grapes = ({ value, onchange, set, id }: { value: any; onchange: any; set: 
     if (!ref.current) return
     const editor = grapesjs.init({
       container: ref.current,
-      plugins: [tailwindPlugin],
-
+      plugins: [tailwindPlugin, plugin],
+      pluginsOpts: {
+        [plugin]: {
+          // options
+        },
+      },
+      storageManager: false,
       height: '450px',
       width: 'auto',
     })
 
     usePanels(editor)
-    useBlocks(editor)
-    client.fetch('*[_type == "globalBlocks"]').then((blocks) => {
-      // Initialize your GrapesJS editor here
-      // and load the blocks into the editor
-      console.log(blocks)
-      if (blocks.length === 0) return
-      blocks.forEach((block: any) => {
-        editor.BlockManager.add(block.id, {
-          label: 'Global Block - ' + block.title,
-          content: block.globalContent,
-          category: 'Global Blocks',
-        })
-      })
-    })
+    useBlocks(editor as Editor, client)
 
     editor.onReady(async () => {
       if (value) {
@@ -86,68 +86,41 @@ const Grapes = ({ value, onchange, set, id }: { value: any; onchange: any; set: 
       } else {
         editor.setComponents('')
       }
-    })
 
-    editor.Commands.add('save', {
-      run: function (editor, sender) {
-        handleSave()
-      },
-    })
-
-    editor.Commands.add('upload-image-command', {
-      run: function (editor, sender) {
-        sender && sender.set('active', 0)
-        const fileInput = document?.querySelector('#file-input') as HTMLInputElement
-        fileInput?.click()
-      },
-    })
-
-    if (id === 'globalContent') {
-      editor.on('component:add', (component) => {
-        // Check if the added component is a 'section' or 'div'
-        if (component.is('section')) {
-          // Assuming 'section' is the type or you can use component.tagName === 'DIV' for divs
-          // Count existing sections
-          const existingSections = editor.getComponents().filter((comp) => comp.is('section'))
-
-          // If there is already one section, prevent adding a new one
-          if (existingSections.length > 1) {
-            component.remove() // This removes the newly added section
-            alert('Only one section is allowed.')
-          }
-        }
+      editor.Commands.add('save', {
+        run: function () {
+          handleSave()
+        },
       })
-    }
-    setLoading(false)
-    setEditor(editor)
+
+      editor.Commands.add('upload-image-command', {
+        run: function (editor, sender) {
+          sender && sender.set('active', 0)
+          const fileInput = document?.querySelector('#file-input') as HTMLInputElement
+          fileInput?.click()
+        },
+      })
+
+      setEditor(editor)
+    })
 
     return () => {
       editor.destroy()
+      editor.off('update', () => {
+        return
+      })
+      editor.off('load', () => {
+        return
+      })
       setEditor(null)
       // ref.current = null
     }
-  }, [id])
+  }, [value, id])
 
   if (ref)
     return (
       <>
         // Editor component
-        {loading && (
-          <div
-            style={{
-              overflow: 'visible',
-              left: 0,
-              right: 0,
-              bottom: 0,
-              zIndex: 1000,
-              height: '600px',
-              width: 'auto',
-              backgroundColor: 'darkblue',
-            }}
-          >
-            Loading...
-          </div>
-        )}
         <div
           style={{
             overflow: 'visible',

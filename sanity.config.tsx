@@ -10,13 +10,15 @@ import { pageStructure } from './plugins/settings'
 import htmlEditor from './plugins/grapes'
 import { defineConfig } from 'sanity'
 import globalBlocks from './schemas/singletons/globalBlocks'
+import blogPost from './schemas/documents/blog'
+import { dataset, projectId } from './plugins/api'
 
 export default defineConfig({
   name: 'default',
   title: 'My Sanity Project',
 
-  projectId: 'your-project-id',
-  dataset: 'production',
+  projectId: projectId,
+  dataset: dataset,
 
   plugins: [
     singletonPlugin(['home', 'settings']),
@@ -37,6 +39,7 @@ export default defineConfig({
       home,
       settings,
       // Documents
+      blogPost,
       page,
       htmlEditor,
       globalBlocks,

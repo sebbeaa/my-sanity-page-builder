@@ -1,9 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 body,
 html {
   margin: 0;
+  padding: 0;
 }
 
 .change-theme-button {
@@ -11,6 +9,33 @@ html {
   height: 40px;
   border-radius: 50%;
   margin: 5px;
+}
+
+.gjs-pn {
+  height: min-content;
+  overflow: scroll;
+  background-color: #1f2022; /* Light gray, adjust to match Sanity.io */
+}
+
+#ipeb {
+  margin-top: auto;
+}
+
+.gjs-pn-buttons {
+  height: min-content;
+}
+
+.gjs-editor {
+  height: 100%;
+  overflow: hidden;
+}
+
+.gjs-pn-commands {
+  height: min-content;
+}
+
+.gjs-cv-canvas {
+  height: 100%;
 }
 
 .change-theme-button:focus {
@@ -36,11 +61,6 @@ html {
 
 .gjs-frame-wrapper {
   min-width: 0 !important;
-}
-
-.gjs-pn-panel {
-  overflow-x: scroll;
-  background-color: #1f2022; /* Light gray, adjust to match Sanity.io */
 }
 
 /* Panel background */

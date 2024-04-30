@@ -19,6 +19,7 @@ export default defineType({
           return <MyEditor {...props} documentType={props.schemaType.name} />
         },
       },
+      hidden: false,
     }),
     defineField({
       name: 'title',
