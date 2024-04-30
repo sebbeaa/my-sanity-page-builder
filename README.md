@@ -45,16 +45,7 @@ pnpm deploy
 
 ### Configuration
 
-Define a `.env` or `.env.local` file containing these variables:
-
-```plaintext
-SANITY_STUDIO_SECRET=""
-SANITY_STUDIO_PROJECT_NAME=""
-
-SANITY_STUDIO_PROJECT_TITLE=""
-SANITY_STUDIO_PROJECT_ID=""
-SANITY_STUDIO_DATASET=""
-```
+add your studio config to sanity.config.tsx & plugins/grapes/createEditor.tsx
 
 For deploying and fetching vars, especially if you have another Sanity project setup, you can use Vercel :
 
