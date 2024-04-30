@@ -28,5 +28,5 @@
 # Dotenv and similar local-only files
 *.local
 .env
-*.vercelignore
+.vercelignore
 .vercel

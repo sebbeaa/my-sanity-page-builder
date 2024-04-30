@@ -1,6 +1,8 @@
-.env    
-!*.env
+.env  
+!\*.env
 
-.sanity
-/node_modules
 .gitignore
+/node_modules
+/dist
+/.sanity
+/.vscode
