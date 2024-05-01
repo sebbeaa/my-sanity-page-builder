@@ -2,6 +2,7 @@ import { Component, Editor } from 'grapesjs'
 import imageUrlBuilder from '@sanity/image-url'
 
 export const useBlocks = async (editor: Editor, client: any) => {
+  if (!editor) return
   const builder = imageUrlBuilder(client)
   function urlFor(source: any) {
     return builder.image(source)
@@ -72,12 +73,10 @@ export const useBlocks = async (editor: Editor, client: any) => {
         })
     }
   })
-
   ;(await client) &&
     client.fetch('*[_type == "globalBlocks"]').then((blocks: any) => {
       // Initialize your GrapesJS editor here
       // and load the blocks into the editor
-      console.log(blocks)
       if (blocks.length === 0) return
       blocks.forEach((block: any) => {
         editor.BlockManager.add(block.id, {

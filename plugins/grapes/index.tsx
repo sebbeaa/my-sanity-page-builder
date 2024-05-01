@@ -4,6 +4,7 @@ import Grapes from './createEditor'
 
 export const MyEditor = (props: any) => {
   const { id, value, onChange } = props
+
   return <Grapes value={value} onchange={onChange} id={id} set={set} />
 }
 

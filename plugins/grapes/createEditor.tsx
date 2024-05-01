@@ -1,20 +1,19 @@
-import { Button, Flex } from '@sanity/ui'
-import { useEffect, useRef, useState } from 'react'
-import { useBlocks } from './editor/Blocks'
-import { usePanels } from './editor/Panels'
-
+import './styles.css'
+import 'grapesjs/dist/css/grapes.min.css'
+import 'grapesjs-component-code-editor/dist/grapesjs-component-code-editor.min.css'
 import grapesjs, { Editor } from 'grapesjs'
-//@ts-ignore
 //@ts-ignore
 import tailwindPlugin from 'grapesjs-tailwind'
 //@ts-ignore
 import plugin from 'grapesjs-component-code-editor'
-import './styles.css'
-import 'grapesjs/dist/css/grapes.min.css'
-import 'grapesjs-component-code-editor/dist/grapesjs-component-code-editor.min.css'
-
+import { Button, Flex } from '@sanity/ui'
 import { createClient } from '@sanity/client'
+import { useEffect, useRef, useState } from 'react'
+import { useBlocks } from './editor/Blocks'
+import { usePanels } from './editor/Panels'
+
 import { dataset, projectId, token } from './api'
+import fetchImagesFromSanity from './editor/Images'
 
 const pId = projectId
 const dSet = dataset
@@ -41,28 +40,38 @@ const Grapes = ({ value, onchange, set, id }: { value: any; onchange: any; set: 
   }
   const handleFileChange = async (event: any) => {
     if (!editor) return
-    const file = event.target.files[0]
-    if (file) {
-      // Read the file as an ArrayBuffer
-      const reader = new FileReader()
-      reader.readAsArrayBuffer(file)
-      reader.onload = async () => {
-        // Upload the encrypted file to Sanity
-        const asset =
-          client &&
-          (await client?.assets?.upload('file', new File([file], file.name, {}), {
-            filename: file.name,
-          }))
+    const files = event.target.files
+    if (!files) {
+      console.error('No files selected.')
+      return
+    }
 
-        // Check if the asset was uploaded successfully and add it to the GrapesJS Asset Manager
+    // Additional custom processing or validation can go here
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i]
+      console.log(`Uploading file: ${file.name}`)
+
+      try {
+        const asset = await client.assets.upload(
+          'image',
+          new File([file], file.name, { type: file.type }),
+          {
+            filename: file.name,
+          },
+        )
         if (asset) {
           const assetUrl = `https://cdn.sanity.io/files/${client.config().projectId}/${client.config().dataset}/${asset._id}.${asset.extension}`
           editor.AssetManager.add({
             src: assetUrl,
             name: file.name,
-            type: 'image',
+            type: 'image', // or 'file' depending on your use case
           })
+          console.log('File uploaded successfully:', assetUrl)
+        } else {
+          console.error('Failed to upload the file.')
         }
+      } catch (error) {
+        console.error('Error uploading file:', error)
       }
     }
   }
@@ -81,8 +90,26 @@ const Grapes = ({ value, onchange, set, id }: { value: any; onchange: any; set: 
       width: 'auto',
     })
 
-    usePanels(editor)
-    useBlocks(editor as Editor, client)
+    if (id === 'headerFooter') {
+      if (!editor) return
+      editor.BlockManager.add('header', {
+        label: 'Header',
+        content: '<header class=" fixed top-0 left-0 right-0 pt-10 px-5">Header</header>',
+        category: 'Basic',
+      })
+      editor.BlockManager.add('footer', {
+        label: 'Footer',
+        content: `<footer class=" fixed bottom left-0 right-0 pt-10 px-5">Footer</footer>`,
+        category: 'Basic',
+      })
+      !value &&
+        editor.setComponents(
+          '<header>Header</header><div class="h-100%">Main Content</div><footer>Footer</footer>',
+        )
+    } else {
+      usePanels(editor)
+      useBlocks(editor as Editor, client)
+    }
 
     editor.onReady(async () => {
       if (value) {
@@ -90,6 +117,8 @@ const Grapes = ({ value, onchange, set, id }: { value: any; onchange: any; set: 
       } else {
         editor.setComponents('')
       }
+
+      fetchImagesFromSanity(editor, client)
 
       editor.Commands.add('save', {
         run: function () {
@@ -100,7 +129,7 @@ const Grapes = ({ value, onchange, set, id }: { value: any; onchange: any; set: 
       editor.Commands.add('upload-image-command', {
         run: function (editor, sender) {
           sender && sender.set('active', 0)
-          const fileInput = document?.querySelector('#file-input') as HTMLInputElement
+          const fileInput = document?.querySelector('#gjs-am-uploadFile') as HTMLInputElement
           fileInput?.click()
         },
       })
@@ -125,29 +154,14 @@ const Grapes = ({ value, onchange, set, id }: { value: any; onchange: any; set: 
     return (
       <>
         // Editor component
-        <div
-          style={{
-            overflow: 'visible',
-            position: 'absolute',
-            top: '-10px',
-            left: 0,
-            right: 0,
-            bottom: 0,
-            zIndex: 1,
-          }}
-        >
-          <div ref={ref} style={{ height: '100%', width: '100vw', margin: '0 auto' }} />
+        <div id="container-wrapper">
+          <div ref={ref} id="editorContainer" />
           <Flex gap={2} marginTop={2}>
             <Button onClick={handleSave} text="Save Content" tone="primary" />
           </Flex>
 
           <>
-            <input
-              type="file"
-              id="file-input"
-              style={{ display: 'none' }}
-              onChange={(e) => handleFileChange(e)}
-            />
+            <input type="file" id="gjs-am-uploadFile" onChange={(e) => handleFileChange(e)} />
           </>
         </div>
       </>

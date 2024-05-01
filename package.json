@@ -8,7 +8,7 @@
     "dev": "sanity dev",
     "start": "sanity start",
     "build": "sanity build",
-    "deploy": "sanity deploy",
+    "deploy": "vercel --prod",
     "deploy-graphql": "sanity graphql deploy"
   },
   "keywords": [

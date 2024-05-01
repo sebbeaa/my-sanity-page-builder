@@ -16,6 +16,26 @@ html {
   background-color: #1f2022; /* Light gray, adjust to match Sanity.io */
 }
 
+#editorContainer {
+  height: 100vh;
+  width: 100vw;
+  margin: 0 auto;
+}
+
+#gjs-am-uploadFile {
+  display: none;
+}
+
+#container-wrapper {
+  overflow: visible;
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
 #ipeb {
   margin-top: auto;
 }
