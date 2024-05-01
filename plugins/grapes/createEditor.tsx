@@ -12,12 +12,24 @@ import { useEffect, useRef, useState } from 'react'
 import { useBlocks } from './editor/Blocks'
 import { usePanels } from './editor/Panels'
 
-import { dataset, projectId, token } from './api'
+import { dataset, projectId, token, url } from './api'
 import fetchImagesFromSanity from './editor/Images'
 
 const pId = projectId
 const dSet = dataset
 const t = token
+const u = url
+
+const upload = async (files: any): Promise<any | string> => {
+  const formData = new FormData()
+  formData.append('file', files[0])
+  const response = await fetch('/api/assets', {
+    method: 'POST',
+    body: formData,
+  })
+  const data = await response.json()
+  return data.url as string
+}
 
 // Custom React GrapesJS editor component
 const Grapes = ({ value, onchange, set, id }: { value: any; onchange: any; set: any; id: any }) => {
@@ -38,43 +50,7 @@ const Grapes = ({ value, onchange, set, id }: { value: any; onchange: any; set: 
       value !== html && onchange(set(combined))
     }
   }
-  const handleFileChange = async (event: any) => {
-    if (!editor) return
-    const files = event.target.files
-    if (!files) {
-      console.error('No files selected.')
-      return
-    }
 
-    // Additional custom processing or validation can go here
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i]
-      console.log(`Uploading file: ${file.name}`)
-
-      try {
-        const asset = await client.assets.upload(
-          'image',
-          new File([file], file.name, { type: file.type }),
-          {
-            filename: file.name,
-          },
-        )
-        if (asset) {
-          const assetUrl = `https://cdn.sanity.io/files/${client.config().projectId}/${client.config().dataset}/${asset._id}.${asset.extension}`
-          editor.AssetManager.add({
-            src: assetUrl,
-            name: file.name,
-            type: 'image', // or 'file' depending on your use case
-          })
-          console.log('File uploaded successfully:', assetUrl)
-        } else {
-          console.error('Failed to upload the file.')
-        }
-      } catch (error) {
-        console.error('Error uploading file:', error)
-      }
-    }
-  }
   useEffect(() => {
     if (!ref.current) return
     const editor = grapesjs.init({
@@ -85,9 +61,14 @@ const Grapes = ({ value, onchange, set, id }: { value: any; onchange: any; set: 
           // options
         },
       },
-      storageManager: false,
-      height: '450px',
-      width: 'auto',
+      assetManager: {
+        upload: false,
+        uploadName: 'files',
+        credentials: 'include',
+        headers: {
+          Authorization: `Bearer ${t}`,
+        },
+      },
     })
 
     if (id === 'headerFooter') {
@@ -107,7 +88,7 @@ const Grapes = ({ value, onchange, set, id }: { value: any; onchange: any; set: 
           '<header>Header</header><div class="h-100%">Main Content</div><footer>Footer</footer>',
         )
     } else {
-      usePanels(editor)
+      usePanels(editor, handleSave)
       useBlocks(editor as Editor, client)
     }
 
@@ -119,20 +100,6 @@ const Grapes = ({ value, onchange, set, id }: { value: any; onchange: any; set: 
       }
 
       fetchImagesFromSanity(editor, client)
-
-      editor.Commands.add('save', {
-        run: function () {
-          handleSave()
-        },
-      })
-
-      editor.Commands.add('upload-image-command', {
-        run: function (editor, sender) {
-          sender && sender.set('active', 0)
-          const fileInput = document?.querySelector('#gjs-am-uploadFile') as HTMLInputElement
-          fileInput?.click()
-        },
-      })
 
       setEditor(editor)
     })
@@ -159,10 +126,6 @@ const Grapes = ({ value, onchange, set, id }: { value: any; onchange: any; set: 
           <Flex gap={2} marginTop={2}>
             <Button onClick={handleSave} text="Save Content" tone="primary" />
           </Flex>
-
-          <>
-            <input type="file" id="gjs-am-uploadFile" onChange={(e) => handleFileChange(e)} />
-          </>
         </div>
       </>
     )

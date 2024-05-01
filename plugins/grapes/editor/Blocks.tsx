@@ -73,7 +73,7 @@ export const useBlocks = async (editor: Editor, client: any) => {
         })
     }
   })
-  ;(await client) &&
+  client &&
     client.fetch('*[_type == "globalBlocks"]').then((blocks: any) => {
       // Initialize your GrapesJS editor here
       // and load the blocks into the editor

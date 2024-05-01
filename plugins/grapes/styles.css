@@ -22,8 +22,43 @@ html {
   margin: 0 auto;
 }
 
-#gjs-am-uploadFile {
+#gjs-am-uploadFile,
+.gjs-am-add-assets-header {
   display: none;
+}
+
+.gjs-mdl-container {
+  width: 100%;
+}
+
+#gjs-am-title {
+  display: none;
+}
+
+.gjs-mdl-container {
+  width: 100vw;
+  padding-top: 15vh;
+  height: 85vh;
+
+  position: fixed;
+  display: grid;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.gjs-am-file-uploader {
+  display: none;
+}
+
+.gjs-mdl-dialog {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  display: grid !important;
+  justify-content: center !important;
+  align-items: center !important;
+  bottom: 0;
 }
 
 #container-wrapper {
