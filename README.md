@@ -47,11 +47,13 @@ vercel
 
 Setup a [sanity.io](https://sanity.io) studio using the cli, their api, or via their website! then add the necessary .env vars like ids, datasets & tokens, you can refer to Sanity's own docs docs if you have issues finding them!
 
-```.env
-    SANITY_STUDIO_PROJECT_ID='YOUR_PROJECT_ID'
-    SANITY_STUDIO_DATASET='YOUR_DATASET'
-    SANITY_STUDIO_TOKEN='YOUR_READ_&_WRITE_TOKEN'
-    SANITY_STUDIO_URL='YOUR_STUDIO_URL'
+.env
+
+```
+SANITY_STUDIO_PROJECT_ID='YOUR_PROJECT_ID'
+SANITY_STUDIO_DATASET='YOUR_DATASET'
+SANITY_STUDIO_TOKEN='YOUR_READ_&_WRITE_TOKEN'
+SANITY_STUDIO_URL='YOUR_STUDIO_URL'
 ```
 
 For deploying and fetching vars, especially if you have another Sanity project setup, you could use Vercel :
