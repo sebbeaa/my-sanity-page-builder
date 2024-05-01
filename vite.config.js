@@ -8,7 +8,7 @@ export default defineConfig({
       plugins: [require('tailwindcss')],
     },
   },
-  publicDir: '/media',
+  publicDir: 'media',
   build: {
     outDir: 'dist',
   },
