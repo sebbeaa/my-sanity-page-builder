@@ -45,8 +45,10 @@ const Grapes = ({ value, onchange, set, id }: { value: any; onchange: any; set: 
     if (editor) {
       const html = editor?.getHtml()
       const css = editor?.getCss()
-      const combined = `<style>${css}</style>${html}`
-      value !== html && onchange(set(combined))
+
+      const output = `<style>${css}</style>${html}`
+
+      value !== html && onchange(set(output))
     }
   }
 
@@ -65,6 +67,7 @@ const Grapes = ({ value, onchange, set, id }: { value: any; onchange: any; set: 
         uploadName: 'files',
         credentials: 'include',
       },
+      height: '500px',
     })
 
     if (id === 'headerFooter') {
@@ -91,6 +94,8 @@ const Grapes = ({ value, onchange, set, id }: { value: any; onchange: any; set: 
     editor.onReady(async () => {
       if (value) {
         editor.setComponents(value)
+        editor.addComponents(`
+              `)
       } else {
         editor.setComponents('')
       }
