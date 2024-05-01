@@ -62,13 +62,14 @@ pnpm i vercel@latest
 
 ---
 
-git add / stage / commit / sync :
+git add / stage / commit / push & deploy :
 
 ```zsh
 git add .
 git stage .
-git commit -m "Commit message"
+git commit -m "updates"
 git push
+vercel --prod
 ```
 
 ### Additional Information
