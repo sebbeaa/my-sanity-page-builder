@@ -1,5 +1,4 @@
 import { Editor } from 'grapesjs'
-import { url } from '../api'
 
 export const usePanels = (editor: Editor, handleSave: any) => {
   if (!editor) return
@@ -29,7 +28,7 @@ export const usePanels = (editor: Editor, handleSave: any) => {
   editor.Commands.add('upload-image-command', {
     run: function (editor, sender) {
       sender && sender.set('active', 0)
-      location.replace(new URL(url + '/media'))
+      location.assign(new URL(location.origin + '/media'))
     },
   })
   const pn = editor.Panels

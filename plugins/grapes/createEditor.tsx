@@ -18,7 +18,6 @@ import fetchImagesFromSanity from './editor/Images'
 const pId = projectId
 const dSet = dataset
 const t = token
-const u = url
 
 const upload = async (files: any): Promise<any | string> => {
   const formData = new FormData()
@@ -65,9 +64,6 @@ const Grapes = ({ value, onchange, set, id }: { value: any; onchange: any; set: 
         upload: false,
         uploadName: 'files',
         credentials: 'include',
-        headers: {
-          Authorization: `Bearer ${t}`,
-        },
       },
     })
 
