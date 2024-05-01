@@ -28,7 +28,7 @@ export const usePanels = (editor: Editor, handleSave: any) => {
   editor.Commands.add('upload-image-command', {
     run: function (editor, sender) {
       sender && sender.set('active', 0)
-      location.assign(location.origin + '/media')
+      location.href.concat(location.origin, '/media')
     },
   })
   const pn = editor.Panels
