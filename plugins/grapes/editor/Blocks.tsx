@@ -91,7 +91,7 @@ export const useBlocks = async (editor: Editor, client: any) => {
         `
         editor.BlockManager.add(post._id, {
           label: post.title,
-          content: post.content.html,
+          content: postContent,
           category: 'Blog',
         })
       })
@@ -122,7 +122,7 @@ export const useBlocks = async (editor: Editor, client: any) => {
         `
               editor.BlockManager.add(post._id, {
                 label: post.title,
-                content: post.content.html,
+                content: postContent,
                 category: 'Blog',
               })
               if (!addedPosts.has(post._id)) {
