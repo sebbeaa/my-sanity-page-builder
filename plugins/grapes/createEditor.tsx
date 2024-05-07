@@ -40,12 +40,14 @@ const Grapes: React.FC<GrapesProps> = (props: any) => {
     if (value?.html && value?.css && editor) {
       editor?.setStyle(value?.css || '')
       editor?.setComponents(value?.html || '')
-      usePanels(editor)
-      useBlocks(editor as Editor, client)
     } else if (editor && !value?.html && !value?.css) {
       editor?.setStyle('')
       editor?.setComponents('')
     }
+    editor?.on('load', () => {
+      usePanels(editor)
+      useBlocks(editor as Editor, client)
+    })
   }, [editor, value?.html, value?.css])
 
   useEffect(() => {
