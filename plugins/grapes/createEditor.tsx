@@ -44,10 +44,8 @@ const Grapes: React.FC<GrapesProps> = (props: any) => {
       editor?.setStyle('')
       editor?.setComponents('')
     }
-    editor?.on('load', () => {
-      usePanels(editor)
-      useBlocks(editor as Editor, client)
-    })
+    editor && client ? useBlocks(editor as Editor, client) : null
+    editor && usePanels(editor)
   }, [editor, value?.html, value?.css])
 
   useEffect(() => {
@@ -66,7 +64,7 @@ const Grapes: React.FC<GrapesProps> = (props: any) => {
         },
         [tailwindPlugin]: {
           /* options */
-
+          parseCss: true,
           prefix: 'tw-',
           config: {
             theme: {
