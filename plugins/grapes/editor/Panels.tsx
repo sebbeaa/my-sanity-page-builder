@@ -1,6 +1,6 @@
 import { Editor } from 'grapesjs'
 
-export const usePanels = (editor: Editor, handleSave: any) => {
+export const usePanels = (editor: Editor) => {
   if (!editor) return
 
   editor.Panels.addButton('options', [
@@ -18,19 +18,15 @@ export const usePanels = (editor: Editor, handleSave: any) => {
         command: 'upload-image-command',
         attributes: { title: 'Upload Image' },
       },
+    ]),
+    editor.Panels.addButton('options', [
+      {
+        id: 'gjs-open-import-webpage',
+        className: 'fa fa-code',
+        command: 'open-import-webpage',
+        attributes: { title: 'Import Webpage' },
+      },
     ])
-  editor.Commands.add('save', {
-    run: function () {
-      handleSave()
-    },
-  })
-
-  editor.Commands.add('upload-image-command', {
-    run: function (editor, sender) {
-      sender && sender.set('active', 0)
-      location.assign(location.origin + '/media')
-    },
-  })
   const pn = editor.Panels
   const panelViews = pn.addPanel({
     id: 'views',

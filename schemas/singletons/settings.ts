@@ -1,5 +1,6 @@
 import { CogIcon } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
+import Grapes from '../../plugins/grapes/createEditor'
 
 export default defineType({
   name: 'settings',
@@ -20,10 +21,10 @@ export default defineType({
           type: 'reference',
           to: [
             {
-              type: 'home',
+              type: 'homeDocument',
             },
             {
-              type: 'page',
+              type: 'pages',
             },
           ],
         },
@@ -67,9 +68,28 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'headerFooter',
+      name: 'content',
       title: 'Header and Footer',
-      type: 'content',
+      type: 'object',
+
+      fields: [
+        {
+          name: 'html',
+          type: 'string',
+          title: 'HTML Content',
+          initialValue: '<h1>Header</h1>',
+        },
+        {
+          name: 'css',
+          type: 'string',
+          title: 'CSS Styling',
+          initialValue: 'color: black;',
+        },
+      ],
+
+      components: {
+        input: Grapes,
+      },
     }),
   ],
   preview: {

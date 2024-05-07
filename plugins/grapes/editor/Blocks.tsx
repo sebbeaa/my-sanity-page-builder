@@ -4,6 +4,7 @@ import imageUrlBuilder from '@sanity/image-url'
 export const useBlocks = async (editor: Editor, client: any) => {
   if (!editor) return
   const builder = imageUrlBuilder(client)
+
   function urlFor(source: any) {
     return builder.image(source)
   }
@@ -21,7 +22,44 @@ export const useBlocks = async (editor: Editor, client: any) => {
 
   editor.on('load', async () => {
     // This set tracks added posts to prevent duplicates
+    client &&
+      client.fetch('*[_type == "globalBlocks"]').then((blocks: any) => {
+        // Initialize your GrapesJS editor here
+        // and load the blocks into the editor
+        if (blocks.length === 0) return
+        blocks.forEach((block: any) => {
+          editor.BlockManager.add(block.id, {
+            label: 'Global Block - ' + block.title,
+            content: block.content.html,
+            category: 'Global Blocks',
+          })
+        })
+      })
+    editor.BlockManager.add('text-block', {
+      label: 'Text',
+      content: '<div data-gjs-type="text">Insert your text here</div>',
+      category: 'Basic',
+    })
 
+    editor.BlockManager.add('section-block', {
+      label: 'Section',
+      content:
+        '<section><h2>This is a simple section</h2><p>And this is a paragraph within the section</p></section>',
+      category: 'Basic',
+    })
+
+    editor.BlockManager.add('text-block', {
+      label: 'Text',
+      content: '<div data-gjs-type="text">Insert your text here</div>',
+      category: 'Basic',
+    })
+
+    editor.BlockManager.add('section-block', {
+      label: 'Section',
+      content:
+        '<section><h2>This is a simple section</h2><p>And this is a paragraph within the section</p></section>',
+      category: 'Basic',
+    })
     // Define a block for the container of all blog posts
     editor.BlockManager.add('blog-posts-container', {
       label: 'All Blog Posts',
@@ -53,7 +91,7 @@ export const useBlocks = async (editor: Editor, client: any) => {
         `
         editor.BlockManager.add(post._id, {
           label: post.title,
-          content: postContent,
+          content: post.content.html,
           category: 'Blog',
         })
       })
@@ -84,7 +122,7 @@ export const useBlocks = async (editor: Editor, client: any) => {
         `
               editor.BlockManager.add(post._id, {
                 label: post.title,
-                content: postContent,
+                content: post.content.html,
                 category: 'Blog',
               })
               if (!addedPosts.has(post._id)) {
@@ -94,31 +132,6 @@ export const useBlocks = async (editor: Editor, client: any) => {
             })
           }))
       }
-    })
-    client &&
-      client.fetch('*[_type == "globalBlocks"]').then((blocks: any) => {
-        // Initialize your GrapesJS editor here
-        // and load the blocks into the editor
-        if (blocks.length === 0) return
-        blocks.forEach((block: any) => {
-          editor.BlockManager.add(block.id, {
-            label: 'Global Block - ' + block.title,
-            content: block.globalContent,
-            category: 'Global Blocks',
-          })
-        })
-      })
-    editor.BlockManager.add('text-block', {
-      label: 'Text',
-      content: '<div data-gjs-type="text">Insert your text here</div>',
-      category: 'Basic',
-    })
-
-    editor.BlockManager.add('section-block', {
-      label: 'Section',
-      content:
-        '<section><h2>This is a simple section</h2><p>And this is a paragraph within the section</p></section>',
-      category: 'Basic',
     })
   })
 }

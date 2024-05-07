@@ -1,135 +1,129 @@
-import './styles.css'
+import React, { useEffect, useRef, useState } from 'react'
+import grapesjs, { Editor } from 'grapesjs'
 import 'grapesjs/dist/css/grapes.min.css'
 import 'grapesjs-component-code-editor/dist/grapesjs-component-code-editor.min.css'
-import grapesjs, { Editor } from 'grapesjs'
-//@ts-ignore
+import './styles.css'
+// @ts-ignore
 import tailwindPlugin from 'grapesjs-tailwind'
-//@ts-ignore
+// @ts-ignore
 import plugin from 'grapesjs-component-code-editor'
 import { Button, Flex } from '@sanity/ui'
-import { createClient } from '@sanity/client'
-import { useEffect, useRef, useState } from 'react'
 import { useBlocks } from './editor/Blocks'
 import { usePanels } from './editor/Panels'
+import { createClient } from '@sanity/client'
+import { dataset, projectId, token } from './api'
+import { set } from 'sanity'
 
-import { dataset, projectId, token, url } from './api'
-import fetchImagesFromSanity from './editor/Images'
+interface GrapesProps {
+  props: ObjectConstructor
+}
 
 const pId = projectId
 const dSet = dataset
 const t = token
 
-const upload = async (files: any): Promise<any | string> => {
-  const formData = new FormData()
-  formData.append('file', files[0])
-  const response = await fetch('/api/assets', {
-    method: 'POST',
-    body: formData,
-  })
-  const data = await response.json()
-  return data.url as string
-}
+const client = createClient({
+  projectId: pId,
+  dataset: dSet,
+  apiVersion: '2024-01-29',
+  useCdn: false, // `false` if you want fresh data
+  token: t,
+})
 
-// Custom React GrapesJS editor component
-const Grapes = ({ value, onchange, set, id }: { value: any; onchange: any; set: any; id: any }) => {
-  const ref = useRef<HTMLDivElement>(null)
-  const [editor, setEditor] = useState<null | Editor>(null)
-  const client = createClient({
-    projectId: pId,
-    dataset: dSet,
-    apiVersion: '2024-01-29',
-    useCdn: false, // `false` if you want fresh data
-    token: t,
-  })
-  const handleSave = () => {
-    if (editor) {
-      const html = editor?.getHtml()
-      const css = editor?.getCss()
-
-      const output = `<style>${css}</style>${html}`
-
-      value !== html && onchange(set(output))
-    }
-  }
+const Grapes: React.FC<GrapesProps> = (props: any) => {
+  console.log(props)
+  const { value, onChange, id } = props
+  const editorRef = useRef<Editor | any>(null)
+  const [editor, setEditor] = useState<Editor | any>(null)
 
   useEffect(() => {
-    if (!ref.current) return
-    const editor = grapesjs.init({
-      container: ref.current,
+    if (value?.html && value?.css && editor) {
+      editor?.setStyle(value?.css || '')
+      editor?.setComponents(value?.html || '')
+      usePanels(editor)
+      useBlocks(editor as Editor, client)
+    } else if (editor && !value?.html && !value?.css) {
+      editor?.setStyle('')
+      editor?.setComponents('')
+    }
+  }, [editor, value?.html, value?.css])
+
+  useEffect(() => {
+    const editorInstance = grapesjs.init({
+      container: '#editor-container',
+      fromElement: true,
       plugins: [tailwindPlugin, plugin],
       pluginsOpts: {
         [plugin]: {
-          // options
+          css: true,
+          json: true,
+          html: true,
+          script: true,
+
+          /* options */
+        },
+        [tailwindPlugin]: {
+          /* options */
+
+          prefix: 'tw-',
+          config: {
+            theme: {
+              extend: {
+                colors: {
+                  primary: '#333',
+                  secondary: '#ccc',
+                },
+              },
+            },
+          },
         },
       },
       assetManager: {
         upload: false,
-        uploadName: 'files',
         credentials: 'include',
       },
       height: '500px',
     })
 
-    if (id === 'headerFooter') {
-      if (!editor) return
-      editor.BlockManager.add('header', {
-        label: 'Header',
-        content: '<header class=" fixed top-0 left-0 right-0 pt-10 px-5">Header</header>',
-        category: 'Basic',
-      })
-      editor.BlockManager.add('footer', {
-        label: 'Footer',
-        content: `<footer class=" fixed bottom left-0 right-0 pt-10 px-5">Footer</footer>`,
-        category: 'Basic',
-      })
-      !value &&
-        editor.setComponents(
-          '<header>Header</header><div class="h-100%">Main Content</div><footer>Footer</footer>',
-        )
-    } else {
-      usePanels(editor, handleSave)
-      useBlocks(editor as Editor, client)
+    setEditor(editorInstance)
+    editorRef.current = editorInstance
+
+    if (editor) {
     }
-
-    editor.onReady(async () => {
-      if (value) {
-        editor.setComponents(value)
-        editor.addComponents(`
-              `)
-      } else {
-        editor.setComponents('')
-      }
-
-      fetchImagesFromSanity(editor, client)
-
-      setEditor(editor)
-    })
-
     return () => {
-      editor.destroy()
-      editor.off('update', () => {
-        return
-      })
-      editor.off('load', () => {
-        return
-      })
+      editorInstance.off('load', () => null)
+      editorInstance.setComponents('')
+      editorInstance.setStyle('')
       setEditor(null)
-      // ref.current = null
     }
-  }, [value, id])
+  }, [])
 
-  if (ref)
-    return (
-      <>
-        // Editor component
-        <div id="container-wrapper">
-          <div ref={ref} id="editorContainer" />
-          <Flex gap={2} marginTop={2}>
-            <Button onClick={handleSave} text="Save Content" tone="primary" />
-          </Flex>
-        </div>
-      </>
-    )
+  const handleSave = async (editor: Editor) => {
+    if (editor) {
+      const css = editor.getCss()
+      const html = editor.getHtml()
+
+      if (onChange && html !== undefined) {
+        onChange(set({ html, css }))
+      }
+    }
+  }
+
+  return (
+    <>
+      2
+      <div id="container-wrapper">
+        <div ref={editorRef} id="editor-container" />
+        <Flex gap={2} marginTop={2}>
+          {editor && (
+            <>
+              <Button onClick={() => handleSave(editor)} text="Save Content" tone="primary" />
+            </>
+          )}
+        </Flex>
+      </div>
+    </>
+  )
 }
 
 export default Grapes
