@@ -31,7 +31,6 @@ const client = createClient({
 })
 
 const Grapes: React.FC<GrapesProps> = (props: any) => {
-  console.log(props)
   const { value, onChange, id } = props
   const editorRef = useRef<Editor | any>(null)
   const [editor, setEditor] = useState<Editor | any>(null)
@@ -46,7 +45,7 @@ const Grapes: React.FC<GrapesProps> = (props: any) => {
     }
     editor && client ? useBlocks(editor as Editor, client) : null
     editor && usePanels(editor)
-  }, [editor, value?.html, value?.css])
+  }, [editorRef?.current, value?.html, value?.css])
 
   useEffect(() => {
     const editorInstance = grapesjs.init({
