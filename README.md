@@ -25,6 +25,7 @@ here is a video preview from an earlier version!
 - [ ] Implement real-time collaboration features for team editing.
 - [ ] Improve server-side encryption for enhanced security / performance (hint: using web workers / a node.js child process would do the trick).
 - [ ] Develop comprehensive documentation for easy setup and usage.
+- [x] [Create front-end for page builder](https://page-builder-front.vercel.app/)
 - [x] Integrate TailwindCSS and dynamic floating panels for a seamless design experience. thanks to [Ju99ernaut](https://github.com/Ju99ernaut/grapesjs-tailwind)
 - [ ] Write the press release
 - [ ] Contact the media
