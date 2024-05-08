@@ -15,6 +15,7 @@ import { usePanels } from './editor/Panels'
 import { createClient } from '@sanity/client'
 import { dataset, projectId, token } from './api'
 import { set } from 'sanity'
+import fetchImagesFromSanity from './editor/Images'
 
 interface GrapesProps {
   props: ObjectConstructor
@@ -24,7 +25,7 @@ const pId = projectId
 const dSet = dataset
 const t = token
 
-const client = createClient({
+export const client = createClient({
   projectId: pId,
   dataset: dSet,
   apiVersion: '2024-01-29',
@@ -58,6 +59,10 @@ const Grapes: React.FC<GrapesProps> = (props: any) => {
       height: '500px',
     })
 
+    fetchImagesFromSanity(editorInstance as Editor, client)
+    useBlocks(editorInstance as Editor, client)
+    usePanels(editorInstance as Editor)
+
     setEditor(editorInstance)
     editorRef.current = editorInstance
 
@@ -65,8 +70,6 @@ const Grapes: React.FC<GrapesProps> = (props: any) => {
       if (value) {
         editorInstance?.setStyle(value?.css || '')
         editorInstance?.setComponents(value?.html || '')
-        editorInstance && client ? useBlocks(editorInstance as Editor, client) : null
-        editorInstance && usePanels(editorInstance)
       }
     })
 
