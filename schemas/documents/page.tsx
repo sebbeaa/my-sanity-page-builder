@@ -16,6 +16,16 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      type: 'slug',
+      name: 'slug',
+      title: 'Slug',
+      options: {
+        source: 'title',
+        maxLength: 200,
+      },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'content',
       title: 'Page Content',
       type: 'object',

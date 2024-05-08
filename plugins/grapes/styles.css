@@ -14,6 +14,7 @@ html {
 .gjs-pn-views {
   overflow-x: scroll;
   background-color: #1f2022; /* Light gray, adjust to match Sanity.io */
+  z-index: 1;
 }
 
 #editorContainer {

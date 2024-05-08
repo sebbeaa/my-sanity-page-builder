@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import grapesjs, { Editor } from 'grapesjs'
-import 'grapesjs/dist/css/grapes.min.css'
+
 import 'grapesjs-component-code-editor/dist/grapesjs-component-code-editor.min.css'
+import 'grapesjs/dist/css/grapes.min.css'
 import './styles.css'
+
 // @ts-ignore
 import tailwindPlugin from 'grapesjs-tailwind'
 // @ts-ignore
@@ -31,8 +33,8 @@ const client = createClient({
 })
 
 const Grapes: React.FC<GrapesProps> = (props: any) => {
-  const { value, onChange, id } = props
-  const editorRef = useRef<Editor | any>(null)
+  const { value, onChange } = props
+  const editorRef = useRef<Editor | any>()
   const [editor, setEditor] = useState<Editor | any>(null)
 
   useEffect(() => {
@@ -45,38 +47,21 @@ const Grapes: React.FC<GrapesProps> = (props: any) => {
     }
     editor && client ? useBlocks(editor as Editor, client) : null
     editor && usePanels(editor)
-  }, [editorRef?.current, value?.html, value?.css])
+  }, [editor, value?.html, value?.css])
 
   useEffect(() => {
     const editorInstance = grapesjs.init({
       container: '#editor-container',
       fromElement: true,
+
       plugins: [tailwindPlugin, plugin],
       pluginsOpts: {
-        [plugin]: {
-          css: true,
-          json: true,
-          html: true,
-          script: true,
-
-          /* options */
-        },
         [tailwindPlugin]: {
-          /* options */
-          parseCss: true,
-          prefix: 'tw-',
-          config: {
-            theme: {
-              extend: {
-                colors: {
-                  primary: '#333',
-                  secondary: '#ccc',
-                },
-              },
-            },
-          },
+          // options
+          tailwindPlayCdn: 'https://cdn.tailwindcss.com',
         },
       },
+
       assetManager: {
         upload: false,
         credentials: 'include',
@@ -99,12 +84,17 @@ const Grapes: React.FC<GrapesProps> = (props: any) => {
 
   const handleSave = async (editor: Editor) => {
     if (editor) {
-      const css = editor.getCss()
-      const html = editor.getHtml()
-
-      if (onChange && html !== undefined) {
-        onChange(set({ html, css }))
-      }
+      editor.runCommand('get-tailwindCss', {
+        /* Options here */
+        callback: function (css: string) {
+          const components = editor.getComponents()
+          const html = components.map((cmp) => cmp.toHTML()).join('')
+          console.log(html)
+          if (onChange && editor.getHtml() !== undefined) {
+            onChange(set({ html: html, css }))
+          }
+        },
+      })
     }
   }
 

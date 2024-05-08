@@ -18,15 +18,8 @@ export const usePanels = (editor: Editor) => {
         command: 'upload-image-command',
         attributes: { title: 'Upload Image' },
       },
-    ]),
-    editor.Panels.addButton('options', [
-      {
-        id: 'gjs-open-import-webpage',
-        className: 'fa fa-code',
-        command: 'open-import-webpage',
-        attributes: { title: 'Import Webpage' },
-      },
     ])
+
   const pn = editor.Panels
   const panelViews = pn.addPanel({
     id: 'views',
