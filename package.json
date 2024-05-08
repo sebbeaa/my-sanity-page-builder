@@ -1,7 +1,7 @@
 {
   "name": "my-sanity-project",
   "private": true,
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "package.json",
   "license": "UNLICENSED",
   "scripts": {

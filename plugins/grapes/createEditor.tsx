@@ -38,18 +38,6 @@ const Grapes: React.FC<GrapesProps> = (props: any) => {
   const [editor, setEditor] = useState<Editor | any>(null)
 
   useEffect(() => {
-    if (value?.html && value?.css && editor) {
-      editor?.setStyle(value?.css || '')
-      editor?.setComponents(value?.html || '')
-    } else if (editor && !value?.html && !value?.css) {
-      editor?.setStyle('')
-      editor?.setComponents('')
-    }
-    editor && client ? useBlocks(editor as Editor, client) : null
-    editor && usePanels(editor)
-  }, [editor, value?.html, value?.css])
-
-  useEffect(() => {
     const editorInstance = grapesjs.init({
       container: '#editor-container',
       fromElement: true,
@@ -72,15 +60,21 @@ const Grapes: React.FC<GrapesProps> = (props: any) => {
     setEditor(editorInstance)
     editorRef.current = editorInstance
 
-    if (editor) {
-    }
+    editorInstance.on('load', () => {
+      if (value) {
+        editorInstance?.setStyle(value?.css || '')
+        editorInstance?.setComponents(value?.html || '')
+        editorInstance && client ? useBlocks(editorInstance as Editor, client) : null
+        editorInstance && usePanels(editorInstance)
+      }
+    })
+
     return () => {
       editorInstance.off('load', () => null)
       editorInstance.setComponents('')
       editorInstance.setStyle('')
-      setEditor(null)
     }
-  }, [])
+  }, [value])
 
   const handleSave = async (editor: Editor) => {
     if (editor) {
