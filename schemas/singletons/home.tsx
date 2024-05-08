@@ -1,6 +1,7 @@
 import { HomeIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 import Grapes from '../../plugins/grapes/createEditor'
+import { c } from 'vite/dist/node/types.d-aGj9QkWt'
 
 export default defineType({
   name: 'homeDocument',
@@ -13,9 +14,24 @@ export default defineType({
     defineField({
       name: 'title',
       type: 'string',
-
       initialValue: 'Home',
       hidden: false,
+    }),
+    defineField({
+      name: 'seoTitle',
+      type: 'string',
+      title: 'SEO Title',
+      description: 'SEO title for the page',
+      validation: (rule) => rule.required(),
+      initialValue: '',
+    }),
+    defineField({
+      type: 'text',
+      name: 'overview',
+      title: 'Overview',
+      description: 'SEO overview for the page',
+      validation: (rule) => rule.required(),
+      initialValue: '',
     }),
     defineField({
       name: 'content',

@@ -18,6 +18,22 @@ export default defineType({
       type: 'text',
       description: 'A short description or excerpt of the blog post',
     },
+    defineField({
+      name: 'seoTitle',
+      type: 'string',
+      title: 'SEO Title',
+      description: 'SEO title for the page',
+      validation: (rule) => rule.required(),
+      initialValue: '',
+    }),
+    defineField({
+      type: 'text',
+      name: 'overview',
+      title: 'Overview',
+      description: 'SEO overview for the page',
+      validation: (rule) => rule.required(),
+      initialValue: '',
+    }),
     {
       name: 'thumbnail',
       title: 'Thumbnail Image',

@@ -1,7 +1,7 @@
 import { DocumentIcon } from '@sanity/icons'
-import { defineField, defineType, getValueAtPath } from 'sanity'
+import { defineField, defineType } from 'sanity'
 import Grapes from '../../plugins/grapes/createEditor'
-import grapes from '../../plugins/grapes'
+
 export default defineType({
   type: 'document',
   name: 'pages',
@@ -26,6 +26,14 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      type: 'text',
+      name: 'overview',
+      title: 'Overview',
+      description: 'SEO overview for the page',
+      validation: (rule) => rule.required(),
+      initialValue: '',
+    }),
+    defineField({
       name: 'content',
       title: 'Page Content',
       type: 'object',
@@ -43,12 +51,10 @@ export default defineType({
           initialValue: '',
         },
       ],
-
       components: {
         input: Grapes,
-
         history: {
-          false: true,
+          false: false,
         },
       },
     }),
