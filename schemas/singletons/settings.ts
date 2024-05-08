@@ -13,7 +13,7 @@ export default defineType({
     defineField({
       name: 'menuItems',
       title: 'Menu Item list',
-      description: 'Links displayed on the header of your site.',
+      description: 'Links displayed on the header & footer of your site.',
       type: 'array',
       of: [
         {
@@ -32,33 +32,6 @@ export default defineType({
     }),
 
     defineField({
-      name: 'footer',
-      description: 'This is a block of text that will be displayed at the bottom of the page.',
-      title: 'Footer Info',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          type: 'block',
-          marks: {
-            annotations: [
-              {
-                name: 'link',
-                type: 'object',
-                title: 'Link',
-                fields: [
-                  {
-                    name: 'href',
-                    type: 'url',
-                    title: 'Url',
-                  },
-                ],
-              },
-            ],
-          },
-        }),
-      ],
-    }),
-    defineField({
       name: 'ogImage',
       title: 'Open Graph Image',
       type: 'image',
@@ -67,30 +40,30 @@ export default defineType({
         hotspot: true,
       },
     }),
-    defineField({
-      name: 'content',
-      title: 'Header and Footer',
-      type: 'object',
+    // defineField({
+    //   name: 'content',
+    //   title: 'Header and Footer',
+    //   type: 'object',
 
-      fields: [
-        {
-          name: 'html',
-          type: 'string',
-          title: 'HTML Content',
-          initialValue: '<h1>Header</h1>',
-        },
-        {
-          name: 'css',
-          type: 'string',
-          title: 'CSS Styling',
-          initialValue: 'color: black;',
-        },
-      ],
+    //   fields: [
+    //     {
+    //       name: 'html',
+    //       type: 'string',
+    //       title: 'HTML Content',
+    //       initialValue: '<h1>Header</h1>',
+    //     },
+    //     {
+    //       name: 'css',
+    //       type: 'string',
+    //       title: 'CSS Styling',
+    //       initialValue: 'color: black;',
+    //     },
+    //   ],
 
-      components: {
-        input: Grapes,
-      },
-    }),
+    //   components: {
+    //     input: Grapes,
+    //   },
+    // }),
   ],
   preview: {
     prepare() {

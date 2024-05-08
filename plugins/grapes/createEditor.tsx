@@ -33,7 +33,8 @@ const client = createClient({
 })
 
 const Grapes: React.FC<GrapesProps> = (props: any) => {
-  const { value, onChange } = props
+  const { value, onChange, schemaType } = props
+  console.log(schemaType.title === 'Header and Footer')
   const editorRef = useRef<Editor | any>()
   const [editor, setEditor] = useState<Editor | any>(null)
 
@@ -82,8 +83,14 @@ const Grapes: React.FC<GrapesProps> = (props: any) => {
         /* Options here */
         callback: function (css: string) {
           const components = editor.getComponents()
-          const html = components.map((cmp) => cmp.toHTML()).join('')
-          console.log(html)
+          let html = ''
+          if (schemaType.title === 'Header and Footer') {
+            const header = components.find((cmp) => cmp.id === 'nav')
+            const footer = components.find((cmp) => cmp.id === 'footer')
+            html = (header?.toHTML() || '') + (footer?.toHTML() || '')
+          } else {
+            html = components.map((cmp) => cmp.toHTML()).join('')
+          }
           if (onChange && editor.getHtml() !== undefined) {
             onChange(set({ html: html, css }))
           }
@@ -94,7 +101,12 @@ const Grapes: React.FC<GrapesProps> = (props: any) => {
 
   return (
     <>
-      2
+      {schemaType.title === 'Header and Footer' && (
+        <>
+          <div id="nav">Nav content here</div>
+          <div id="footer">Footer content here</div>
+        </>
+      )}
       <div id="container-wrapper">
         <div ref={editorRef} id="editor-container" />
         <Flex gap={2} marginTop={2}>
