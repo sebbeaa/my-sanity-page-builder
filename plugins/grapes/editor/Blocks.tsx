@@ -29,9 +29,9 @@ export const useBlocks = async (editor: Editor, client: any) => {
         if (blocks.length === 0) return
         blocks.forEach((block: any) => {
           editor.BlockManager.add(block.id, {
-            label: 'Global Block - ' + block.title,
+            label: block.title,
             content: block.content.html,
-            category: 'Global Blocks',
+            category: 'Global Block - ' + block.title,
           })
         })
       })
