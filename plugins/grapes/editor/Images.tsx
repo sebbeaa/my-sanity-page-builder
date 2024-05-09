@@ -1,6 +1,9 @@
-const fetchImagesFromSanity = async (editor: any, client: any) => {
+import { Editor } from 'grapesjs'
+import { SanityClient } from 'sanity'
+
+const fetchImagesFromSanity = async (editor: Editor, client: SanityClient) => {
   if (!editor) return
-  const query = '*[_type == "sanity.imageAsset"]{url, originalFilename}'
+  const query = '*[_type == "image"]{url, originalFilename}'
   try {
     const results = await client.fetch(query)
     if (results.length) {

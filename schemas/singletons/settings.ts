@@ -40,30 +40,30 @@ export default defineType({
         hotspot: true,
       },
     }),
-    // defineField({
-    //   name: 'content',
-    //   title: 'Header and Footer',
-    //   type: 'object',
+    defineField({
+      name: 'content',
+      title: 'Header and Footer',
+      type: 'object',
 
-    //   fields: [
-    //     {
-    //       name: 'html',
-    //       type: 'string',
-    //       title: 'HTML Content',
-    //       initialValue: '<h1>Header</h1>',
-    //     },
-    //     {
-    //       name: 'css',
-    //       type: 'string',
-    //       title: 'CSS Styling',
-    //       initialValue: 'color: black;',
-    //     },
-    //   ],
+      fields: [
+        {
+          name: 'html',
+          type: 'string',
+          title: 'HTML Content',
+          initialValue: '<h1>Header</h1>',
+        },
+        {
+          name: 'css',
+          type: 'string',
+          title: 'CSS Styling',
+          initialValue: 'color: black;',
+        },
+      ],
 
-    //   components: {
-    //     input: Grapes,
-    //   },
-    // }),
+      components: {
+        input: Grapes,
+      },
+    }),
   ],
   preview: {
     prepare() {

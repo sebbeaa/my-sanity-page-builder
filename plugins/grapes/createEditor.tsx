@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import grapesjs, { Editor } from 'grapesjs'
+import grapesjs, { Component, Editor } from 'grapesjs'
 
 import 'grapesjs-component-code-editor/dist/grapesjs-component-code-editor.min.css'
 import 'grapesjs/dist/css/grapes.min.css'
@@ -86,14 +86,10 @@ const Grapes: React.FC<GrapesProps> = (props: any) => {
         /* Options here */
         callback: function (css: string) {
           const components = editor.getComponents()
+
           let html = ''
-          if (schemaType.title === 'Header and Footer') {
-            const header = components.find((cmp) => cmp.id === 'nav')
-            const footer = components.find((cmp) => cmp.id === 'footer')
-            html = (header?.toHTML() || '') + (footer?.toHTML() || '')
-          } else {
-            html = components.map((cmp) => cmp.toHTML()).join('')
-          }
+
+          html = components.map((cmp) => cmp.toHTML()).join('')
           if (onChange && editor.getHtml() !== undefined) {
             onChange(set({ html: html, css }))
           }
@@ -104,12 +100,6 @@ const Grapes: React.FC<GrapesProps> = (props: any) => {
 
   return (
     <>
-      {schemaType.title === 'Header and Footer' && (
-        <>
-          <div id="nav">Nav content here</div>
-          <div id="footer">Footer content here</div>
-        </>
-      )}
       <div id="container-wrapper">
         <div ref={editorRef} id="editor-container" />
         <Flex gap={2} marginTop={2}>
