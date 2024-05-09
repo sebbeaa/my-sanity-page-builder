@@ -1,4 +1,4 @@
-## Visual GrapesJS / HTML Editor in the Sanity.io Studio
+## Visual GrapesJS / HTML & CSS Editor in the Sanity.io Studio
 
 ## VERSION "1.0.8"
 
