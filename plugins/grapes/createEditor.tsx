@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import grapesjs, { Component, Editor } from 'grapesjs'
+import grapesjs, { Editor } from 'grapesjs'
 
 import 'grapesjs-component-code-editor/dist/grapesjs-component-code-editor.min.css'
 import 'grapesjs/dist/css/grapes.min.css'
@@ -43,18 +43,12 @@ const Grapes: React.FC<GrapesProps> = (props: any) => {
     const editorInstance = grapesjs.init({
       container: '#editor-container',
       fromElement: true,
-
       plugins: [tailwindPlugin, plugin],
       pluginsOpts: {
         [tailwindPlugin]: {
           // options
           tailwindPlayCdn: 'https://cdn.tailwindcss.com',
         },
-      },
-
-      assetManager: {
-        upload: false,
-        credentials: 'include',
       },
       height: '500px',
     })
@@ -77,6 +71,7 @@ const Grapes: React.FC<GrapesProps> = (props: any) => {
       editorInstance.off('load', () => null)
       editorInstance.setComponents('')
       editorInstance.setStyle('')
+      editorInstance.destroy()
     }
   }, [value])
 

@@ -1,6 +1,6 @@
-## Visual GrapesJS / HTML & CSS Editor in the Sanity.io Studio
+## Visual GrapesJS / HTML Editor in the Sanity.io Studio
 
-## VERSION "1.0.8"
+## VERSION "1.0.9"
 
 In this Sanity Studio project, we've integrated GrapesJS to offer a comprehensive, interactive, and user-friendly visual content / UI editing experience. This setup allows for intuitive drag & drop functionality, extensive customization, global blocks / components, and real-time updates.
 
@@ -20,15 +20,18 @@ here is a video preview from an earlier version!
 
 ### Todo
 
-- [ ] Enhance drag & drop functionality for smoother interactions.
-- [x] Introduce more customization options for both editors.
-- [ ] Implement real-time collaboration features for team editing.
-- [ ] Improve server-side encryption for enhanced security / performance (hint: using web workers / a node.js child process would do the trick).
 - [ ] Develop comprehensive documentation for easy setup and usage.
 - [x] [Create front-end for page builder](https://page-builder-front.vercel.app/)
 - [x] Integrate TailwindCSS and dynamic floating panels for a seamless design experience. thanks to [Ju99ernaut](https://github.com/Ju99ernaut/grapesjs-tailwind)
-- [ ] Write the press release
-- [ ] Contact the media
+- [ ] Enhance drag & drop functionality for smoother interactions.
+- [ ] Introduce more customization options for both editors.
+- [x] Implement real-time collaboration features for team editing.
+- [ ] Develop comprehensive documentation for easy setup and usage.
+- [ ] Write unit tests to ensure reliability and stability.
+- [ ] Add blog site & template.
+- [ ] Add comment section.
+- [ ] Create user database.
+- [ ] Improve grapes tailwind parser to include custom css.
 
 ### Installation and Deployment
 
