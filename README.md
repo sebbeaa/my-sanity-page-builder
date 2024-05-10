@@ -1,4 +1,4 @@
-## Visual GrapesJS / HTML Editor in the Sanity.io Studio
+## Sanity Visual Block Editor
 
 ## VERSION "1.0.9"
 
