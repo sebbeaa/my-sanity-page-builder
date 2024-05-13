@@ -21,7 +21,7 @@ export default defineConfig({
   dataset: dataset,
 
   plugins: [
-    singletonPlugin(['home', 'settings']),
+    singletonPlugin(['home', 'settings', 'userSchema']),
     structureTool({
       structure: pageStructure([homeDocument, settings]),
     }),
@@ -36,6 +36,7 @@ export default defineConfig({
     // If you want more content types, you can add them to this array
     types: [
       // Singletons
+
       homeDocument,
       settings,
       // Documents

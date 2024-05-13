@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import grapesjs, { Editor } from 'grapesjs'
+import grapesjs, { Component, Editor } from 'grapesjs'
 
 import 'grapesjs-component-code-editor/dist/grapesjs-component-code-editor.min.css'
 import 'grapesjs/dist/css/grapes.min.css'
@@ -12,26 +12,14 @@ import plugin from 'grapesjs-component-code-editor'
 import { Button, Flex } from '@sanity/ui'
 import { useBlocks } from './editor/Blocks'
 import { usePanels } from './editor/Panels'
-import { createClient } from '@sanity/client'
-import { dataset, projectId, token } from './api'
+
 import { set } from 'sanity'
 import fetchImagesFromSanity from './editor/Images'
+import { client } from './api'
 
 interface GrapesProps {
   props: ObjectConstructor
 }
-
-const pId = projectId
-const dSet = dataset
-const t = token
-
-export const client = createClient({
-  projectId: pId,
-  dataset: dSet,
-  apiVersion: '2024-01-29',
-  useCdn: false, // `false` if you want fresh data
-  token: t,
-})
 
 const Grapes: React.FC<GrapesProps> = (props: any) => {
   const { value, onChange, schemaType } = props
@@ -44,6 +32,7 @@ const Grapes: React.FC<GrapesProps> = (props: any) => {
       container: '#editor-container',
       fromElement: true,
       plugins: [tailwindPlugin, plugin],
+
       pluginsOpts: {
         [tailwindPlugin]: {
           // options
@@ -67,6 +56,25 @@ const Grapes: React.FC<GrapesProps> = (props: any) => {
       }
     })
 
+    editorInstance.onReady(() => {
+      editorInstance.onReady(() => {
+        const fullscreenButton = editorInstance.Panels.getButton('options', 'fullscreen')
+        if (fullscreenButton) {
+          fullscreenButton.set('attributes', { ref: 'fullscreen-button' })
+          fullscreenButton.on('click', () => {
+            editorInstance.runCommand('core:fullscreen')
+
+            // Introduce a slight delay for Safari
+            setTimeout(() => {
+              if (editorInstance.Commands && editorInstance.Commands) {
+                editorInstance.runCommand('stop')
+              }
+            }, 100) // Adjust delay as needed
+          })
+        }
+      })
+    })
+
     return () => {
       editorInstance.off('load', () => null)
       editorInstance.setComponents('')
@@ -74,17 +82,29 @@ const Grapes: React.FC<GrapesProps> = (props: any) => {
       editorInstance.destroy()
     }
   }, [value])
-
   const handleSave = async (editor: Editor) => {
     if (editor) {
+      // --- Select Body Element ---
+      const bodyComponent = editor.getWrapper()
+
+      if (bodyComponent?.attributes.tagName === 'body') {
+        editor.select(bodyComponent)
+      } else {
+        console.warn('Body component not found.')
+        return
+      }
+
+      // --- Trigger Change Event ---
+      editor.trigger('change') // This is the key addition
+
+      // --- Proceed with Saving ---
       editor.runCommand('get-tailwindCss', {
-        /* Options here */
-        callback: function (css: string) {
+        callback: (css: string) => {
           const components = editor.getComponents()
 
           let html = ''
-
           html = components.map((cmp) => cmp.toHTML()).join('')
+
           if (onChange && editor.getHtml() !== undefined) {
             onChange(set({ html: html, css }))
           }

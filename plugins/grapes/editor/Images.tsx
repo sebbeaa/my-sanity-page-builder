@@ -3,7 +3,7 @@ import { SanityClient } from 'sanity'
 
 const fetchImagesFromSanity = async (editor: Editor, client: SanityClient) => {
   if (!editor) return
-  const query = '*[_type == "image"]{url, originalFilename}'
+  const query = '*[_type == "image"][0...100]{url, originalFilename}'
   try {
     const results = await client.fetch(query)
     if (results.length) {

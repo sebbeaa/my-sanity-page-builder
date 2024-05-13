@@ -4,11 +4,13 @@
 
 In this Sanity Studio project, we've integrated GrapesJS to offer a comprehensive, interactive, and user-friendly visual content / UI editing experience. This setup allows for intuitive drag & drop functionality, extensive customization, global blocks / components, and real-time updates.
 
+read more here - [Create front-end for page builder](https://page-builder-front.vercel.app/)
+
 ### Features
 
 here is a video preview from an earlier version!
 
-[![sneak peak!](https://i.stack.imgur.com/Vp2cE.png)](https://stream.mux.com/9hmKmFpvacIOZB3gtzUDWBocTcoOYUWf91sA7UFHyh00.m3u8?redundant_streams=true)
+[![sneak peak!](https://i.stack.imgur.com/Vp2cE.png)](https://www.sebastianaanstad.com/project/sanity-custom-block-editor)
 
 - **Drag & Drop:** Seamlessly rearrange your content with drag and drop capabilities
 - **Customizable:** Fully tailor the editor's appearance and functionality to meet your project's specific needs, leveraging GrapesJS's component builder.
