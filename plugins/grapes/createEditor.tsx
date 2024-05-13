@@ -87,8 +87,8 @@ const Grapes: React.FC<GrapesProps> = (props: any) => {
       // --- Select Body Element ---
       const bodyComponent = editor.getWrapper()
 
-      if (bodyComponent?.attributes.tagName === 'body') {
-        editor.select(bodyComponent)
+      if (bodyComponent?.attributes.tagName === 'body' && editor.getComponents()) {
+        editor.select(editor.getWrapper())
       } else {
         console.warn('Body component not found.')
         return
@@ -105,7 +105,7 @@ const Grapes: React.FC<GrapesProps> = (props: any) => {
           let html = ''
           html = components.map((cmp) => cmp.toHTML()).join('')
 
-          if (onChange && editor.getHtml() !== undefined) {
+          if (onChange && editor.getComponents() !== undefined) {
             onChange(set({ html: html, css }))
           }
         },
