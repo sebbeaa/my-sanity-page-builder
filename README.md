@@ -4,7 +4,7 @@
 
 In this Sanity Studio project, we've integrated GrapesJS to offer a comprehensive, interactive, and user-friendly visual content / UI editing experience. This setup allows for intuitive drag & drop functionality, extensive customization, global blocks / components, and real-time updates.
 
-read more here - [Create front-end for page builder](https://page-builder-front.vercel.app/)
+read more here - [front-end for page builder made in nextjs 14](https://page-builder-front.vercel.app/)
 
 ### Features
 
