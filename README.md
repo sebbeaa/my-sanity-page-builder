@@ -10,7 +10,7 @@ read more here - [Create front-end for page builder](https://page-builder-front.
 
 here is a video preview from an earlier version!
 
-[![sneak peak!](https://i.stack.imgur.com/Vp2cE.png)](https://www.sebastianaanstad.com/project/sanity-custom-block-editor)
+[![sneak peak!](https://i.stack.imgur.com/Vp2cE.png)](https://www.sebastianaanstad.com/project/sanity-visual-block-editor)
 
 - **Drag & Drop:** Seamlessly rearrange your content with drag and drop capabilities
 - **Customizable:** Fully tailor the editor's appearance and functionality to meet your project's specific needs, leveraging GrapesJS's component builder.
