@@ -1,85 +1,78 @@
-## Sanity Visual Block Editor
+Fantastic! Here's the updated Markdown to reflect the 1.1.1 release:
 
-## VERSION "1.0.9"
+## Sanity Visual Block Editor with GrapesJS Integration
 
-In this Sanity Studio project, we've integrated GrapesJS to offer a comprehensive, interactive, and user-friendly visual content / UI editing experience. This setup allows for intuitive drag & drop functionality, extensive customization, global blocks / components, and real-time updates.
+**CMS/Studio Version:** 1.1.1
 
-read more here - [front-end for page builder made in nextjs 14](https://page-builder-front.vercel.app/)
+Empower your Sanity Studio with a seamless visual editing experience! This project integrates GrapesJS, a powerful web builder framework, to create an intuitive, customizable editor within your Sanity Studio. Craft beautiful, responsive content with drag-and-drop ease, real-time updates, and extensive design flexibility.
 
-### Features
+[**Explore the Live Demo**](https://page-builder-front.vercel.app/)
 
-here is a video preview from an earlier version!
+[**View the Production Version Preview**](https://www.sebastianaanstad.com/project/sanity-custom-block-editor)
 
-[![sneak peak!](https://i.stack.imgur.com/Vp2cE.png)](https://www.sebastianaanstad.com/project/sanity-visual-block-editor)
+### Key Features
 
-- **Drag & Drop:** Seamlessly rearrange your content with drag and drop capabilities
-- **Customizable:** Fully tailor the editor's appearance and functionality to meet your project's specific needs, leveraging GrapesJS's component builder.
-- **Real-Time Updates:** Ensure all users view the most current content with real-time changes.
-- **Client/Server-Side Encryption:** Secure your content with encryption, enhancing data privacy.
-- **TailwindCSS Integration:** Utilize TailwindCSS for styling, ensuring a consistent and modern design system without side loading any CSS.
-- **Dynamic Floating Panels:** Create a robust foundation for a very customizable component builder within the studio itself, leveraging the best of GrapesJS.
-- **Global Components / blocks:** Add global blocks / components in the studio!
+[Image/video showcasing the editor in action]
 
-### Todo
+- **Visual Drag & Drop:** Effortlessly design and arrange your content using an intuitive drag-and-drop interface.
+- **Customization:** Leverage GrapesJS's robust component builder to tailor the editor's look and feel to your exact specifications.
+- **Real-Time Updates:** Collaborate seamlessly with your team, seeing changes as they happen in real time.
+- **Enhanced Security:** Choose to enable client/server-side encryption to protect your sensitive content.
+- **Modern Styling with TailwindCSS:** Style your content with the popular TailwindCSS framework, ensuring a clean, modern aesthetic.
+- **Dynamic Floating Panels:** Create custom components directly within the Sanity Studio.
+- **Global Components:** Define reusable blocks and components accessible across your entire project.
+- **Enhanced Embedding:** Support for custom iframes, Google Maps, ads, and email forms (Nodemailer).
 
-- [ ] Develop comprehensive documentation for easy setup and usage.
-- [x] [Create front-end for page builder](https://page-builder-front.vercel.app/)
-- [x] Integrate TailwindCSS and dynamic floating panels for a seamless design experience. thanks to [Ju99ernaut](https://github.com/Ju99ernaut/grapesjs-tailwind)
-- [ ] Enhance drag & drop functionality for smoother interactions.
-- [ ] Introduce more customization options for both editors.
-- [x] Implement real-time collaboration features for team editing.
-- [ ] Develop comprehensive documentation for easy setup and usage.
-- [ ] Write unit tests to ensure reliability and stability.
-- [ ] Add blog site & template.
-- [ ] Add comment section.
-- [ ] Create user database.
-- [ ] Improve grapes tailwind parser to include custom css.
+### Coming Soon
 
-### Installation and Deployment
+- **Improved GrapesJS-Tailwind Parser:** Seamless integration of your custom CSS with Tailwind styles.
+- **More Powerful Features:** Stay tuned for future updates with even more exciting capabilities!
 
-Follow these steps to install and deploy the app in your local environment (ensure pnpm is set up with this project) then deploy it to vercel easily as shown below:
+### Installation and Deployment (Vercel)
 
-```zsh
-pnpm i
-pnpm dev
+1. **Install Dependencies:**
+   ```bash
+   pnpm install
+   ```
+2. **Local Development:**
 
-pnpm build
-pnpm start
+   ```bash
+   pnpm dev
+   ```
 
-vercel
-```
+3. **Build and Start Locally:**
 
-### Configuration
+   ```bash
+   pnpm build
+   pnpm start
+   ```
 
-Setup a [sanity.io](https://sanity.io) studio using the cli, their api, or via their website! then add the necessary .env vars like ids, datasets & tokens, you can refer to Sanity's own docs docs if you have issues finding them!
+4. **Deploy to Vercel:**
+   ```bash
+   vercel
+   ```
 
-.env
+### Configuration (Sanity Studio)
 
-```
-SANITY_STUDIO_PROJECT_ID='YOUR_PROJECT_ID'
-SANITY_STUDIO_DATASET='YOUR_DATASET'
-SANITY_STUDIO_TOKEN='YOUR_READ_&_WRITE_TOKEN'
-SANITY_STUDIO_URL='YOUR_STUDIO_URL'
-```
+1. Create a new Sanity Studio project using the Sanity CLI or their web interface.
+2. Add your project's environment variables to a `.env` file:
+   ```
+   SANITY_STUDIO_PROJECT_ID='YOUR_PROJECT_ID'
+   SANITY_STUDIO_DATASET='YOUR_DATASET'
+   SANITY_STUDIO_TOKEN='YOUR_READ_&_WRITE_TOKEN'
+   SANITY_STUDIO_URL='YOUR_STUDIO_URL'
+   ```
+3. **For Deploying and Fetching Variables:** If you're using Vercel to deploy, install their CLI:
+   ```bash
+   pnpm install vercel@latest
+   ```
 
-For deploying and fetching vars, especially if you have another Sanity project setup, you could use Vercel :
+### Contributing
 
-```zsh
-pnpm i vercel@latest
-```
+We welcome contributions! Feel free to open issues, submit pull requests, or share your feedback.
 
----
+**Key changes:**
 
-git add / stage / commit / push & deploy :
-
-```zsh
-git add .
-git stage .
-git commit -m "updates"
-git push
-vercel --prod
-```
-
-### Additional Information
-
-For more detailed information on using the custom GrapesJS editor, refer to the project's documentation or the repo owner. This README aims to guide you through the basic setup and highlight the unique features of combining GrapesJS with in Sanity Studio, offering an unparalleled editing experience.
+- **Version Updated:** Changed the version number to 1.1.1.
+- **Enhanced Embedding Moved:** Shifted "Enhanced Embedding" from "Current Development Focus" to "Key Features" to reflect its release status.
+- **Current Development Removed:** Since the previously mentioned features have been released, the "Current Development Focus" section has been removed.
