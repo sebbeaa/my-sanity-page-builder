@@ -1,50 +1,59 @@
-import { media } from 'sanity-plugin-media'
 import { structureTool } from 'sanity/structure'
-import { getStudioEnvironmentVariables } from 'sanity/cli'
 import homeDocument from './schemas/singletons/home'
 import settings from './schemas/singletons/settings'
 
 import pages from './schemas/documents/page'
 import { singletonPlugin } from './plugins/settings'
 import { pageStructure } from './plugins/settings'
-import htmlEditor from './plugins/grapes'
 import { defineConfig } from 'sanity'
-import globalBlocks from './schemas/singletons/globalBlocks'
-import blogPost from './schemas/documents/blog'
+import globalBlocks from './schemas/documents/globalBlocks'
 import { dataset, projectId, token } from './plugins/grapes/api'
+import allOrders from './schemas/hidden/ordersSchema'
+import prod from './schemas/documents/prod'
+import Grapes from './plugins/grapes'
+import { grapesEditor } from './schemas/documents/editor'
+import { media } from 'sanity-plugin-media'
 
-export default defineConfig({
+let client
+
+export default client = defineConfig({
   name: 'default',
   title: 'My Sanity Project',
 
   projectId: projectId,
   dataset: dataset,
-
+  apiVersion: 'vX',
   plugins: [
-    singletonPlugin(['home', 'settings', 'userSchema']),
+    singletonPlugin(['homeDocument', 'settings', 'userSchema', 'allOrders']),
     structureTool({
-      structure: pageStructure([homeDocument, settings]),
+      structure: pageStructure([homeDocument, settings, allOrders]),
     }),
-    // Vision is a tool that lets you query your content with GROQ in the studio
-    // https://www.sanity.io/docs/the-vision-plugin
     media(),
-
-    globalBlocks,
   ],
 
   schema: {
     // If you want more content types, you can add them to this array
     types: [
       // Singletons
-
+      allOrders,
       homeDocument,
       settings,
       // Documents
-      blogPost,
+      grapesEditor,
       pages,
-
+      prod,
       globalBlocks,
     ],
+  },
+  form: {
+    components: {
+      input: (props: any) => {
+        if (props.schemaType.name === 'grapesEditor') {
+          return <Grapes {...props} />
+        }
+        return props.renderDefault(props)
+      },
+    },
   },
 })
 

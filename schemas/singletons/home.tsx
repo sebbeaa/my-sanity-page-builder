@@ -1,7 +1,6 @@
 import { HomeIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
-import Grapes from '../../plugins/grapes/createEditor'
-import { c } from 'vite/dist/node/types.d-aGj9QkWt'
+import Grapes from '../../plugins/grapes'
 
 export default defineType({
   name: 'homeDocument',
@@ -17,6 +16,7 @@ export default defineType({
       initialValue: 'Home',
       hidden: false,
     }),
+
     defineField({
       name: 'seoTitle',
       type: 'string',
@@ -34,27 +34,33 @@ export default defineType({
       initialValue: '',
     }),
     defineField({
-      name: 'content',
+      name: 'pageSettings',
+      title: 'Page Settings',
       type: 'object',
-      fields: [
-        {
-          name: 'html',
-          type: 'string',
-          title: 'HTML Content',
-          initialValue: '',
-        },
-        {
-          name: 'css',
-          type: 'string',
-          title: 'CSS Styling',
-          initialValue: '',
-        },
-      ],
-      title: 'Home Content',
-
-      components: {
-        input: Grapes,
+      initialValue: {
+        private: false,
+        password: '',
       },
+      fields: [
+        defineField({
+          type: 'boolean',
+          name: 'private',
+          title: 'Private Page',
+          initialValue: false,
+        }),
+        defineField({
+          type: 'string',
+          name: 'password',
+          title: 'Password',
+          hidden: ({ parent }) => !parent?.private,
+          initialValue: '',
+        }),
+      ],
+    }),
+    defineField({
+      title: 'Home Content',
+      name: 'content',
+      type: 'grapesEditor',
     }),
   ],
   preview: {

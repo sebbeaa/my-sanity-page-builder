@@ -1,7 +1,5 @@
 import { DocumentIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
-import Grapes from '../../plugins/grapes/createEditor'
-import { password } from 'bun'
 
 export default defineType({
   type: 'document',
@@ -61,27 +59,7 @@ export default defineType({
     defineField({
       name: 'content',
       title: 'Page Content',
-      type: 'object',
-      fields: [
-        {
-          name: 'html',
-          type: 'string',
-          title: 'HTML Content',
-          initialValue: '',
-        },
-        {
-          name: 'css',
-          type: 'string',
-          title: 'CSS Styling',
-          initialValue: '',
-        },
-      ],
-      components: {
-        input: Grapes,
-        history: {
-          false: false,
-        },
-      },
+      type: 'grapesEditor',
     }),
   ],
   preview: {
@@ -90,7 +68,7 @@ export default defineType({
     },
     prepare({ title }) {
       return {
-        subtitle: 'Private Page',
+        subtitle: 'Page',
         title,
       }
     },

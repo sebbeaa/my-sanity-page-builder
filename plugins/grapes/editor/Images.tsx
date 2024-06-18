@@ -1,9 +1,9 @@
 import { Editor } from 'grapesjs'
-import { SanityClient } from 'sanity'
 
-const fetchImagesFromSanity = async (editor: Editor, client: SanityClient) => {
+import { client } from '../api'
+const fetchImagesFromSanity = async (editor: Editor) => {
   if (!editor) return
-  const query = '*[_type == "image"][0...100]{url, originalFilename}'
+  const query = '*[_type == "image"]{url, originalFilename}'
   try {
     const results = await client.fetch(query)
     if (results.length) {
@@ -12,7 +12,7 @@ const fetchImagesFromSanity = async (editor: Editor, client: SanityClient) => {
         editor.AssetManager.add({
           src: asset.url,
           name: asset.originalFilename || 'No name',
-          type: 'image',
+          type: asset.mimeType, // Use 'mimeType' as the image type
         })
       })
     } else {

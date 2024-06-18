@@ -1,7 +1,7 @@
 import { BlockElementIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 
-import Grapes from '../../plugins/grapes/createEditor'
+import Grapes from '../../plugins/grapes'
 
 // schemas/singletons/globalBlocks.ts
 
@@ -20,27 +20,8 @@ export default defineType({
     }),
     defineField({
       name: 'content',
-      type: 'object',
-
-      fields: [
-        {
-          name: 'html',
-          type: 'string',
-          title: 'HTML Content',
-          initialValue: '',
-        },
-        {
-          name: 'css',
-          type: 'string',
-          title: 'CSS Styling',
-          initialValue: '',
-        },
-      ],
-      title: 'Global Content',
-
-      components: {
-        input: Grapes,
-      },
+      title: 'Global Block Content',
+      type: 'grapesEditor',
     }),
   ],
   preview: {

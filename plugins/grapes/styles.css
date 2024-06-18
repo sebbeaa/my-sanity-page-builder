@@ -4,135 +4,126 @@ html {
   padding: 0;
 }
 
-.change-theme-button {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin: 5px;
-}
-
-.gjs-pn-views {
-  overflow-x: scroll;
-  background-color: #1f2022; /* Light gray, adjust to match Sanity.io */
-  z-index: 1;
-}
-
-#editorContainer {
-  height: 100vh;
-  width: 100vw;
-  margin: 0 auto;
-}
-
-#gjs-am-uploadFile,
-.gjs-am-add-assets-header {
-  display: none;
-}
-
 .gjs-mdl-container {
-  width: 100%;
-}
-
-#gjs-am-title {
-  display: none;
-}
-
-.gjs-mdl-container {
-  width: 100vw;
-  padding-top: 15vh;
-  height: 85vh;
-
-  position: fixed;
-  display: grid;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.gjs-am-file-uploader {
-  display: none;
-}
-
-.gjs-mdl-dialog {
-  width: 100% !important;
-  max-width: 100% !important;
-  height: 100% !important;
-  display: grid !important;
-  justify-content: center !important;
-  align-items: center !important;
-  bottom: 0;
-}
-
-#container-wrapper {
-  overflow: visible;
   position: absolute;
-  top: -10px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-}
-
-#ipeb {
-  margin-top: auto;
-}
-
-.gjs-pn-buttons {
-  height: min-content;
-}
-
-.gjs-editor {
-  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 1000000 !important;
   overflow: hidden;
 }
 
-.gjs-pn-commands {
-  height: min-content;
+.gjs-am-file-uploader {
+  width: 0%;
+  height: 0%;
+  display: none;
 }
 
-.gjs-cv-canvas {
-  height: 100%;
+.gjs-mdl-content {
+  overflow: hidden;
 }
 
-.change-theme-button:focus {
-  /* background-color: yellow; */
-  outline: none;
-  box-shadow: 0 0 0 2pt #c5c5c575;
-}
-
-.grid-layout {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); /* Adjust minmax for your item size */
-  gap: 16px; /* Spacing between grid items */
-  padding: 16px; /* Padding around the grid */
-  box-sizing: border-box; /* Include padding in the total width and height */
-  border-bottom: 1px solid #d0d0d0; /* Border at the bottom of the grid */
-  min-width: none;
-  max-width: none;
-  min-width: 0 !important;
-  justify-content: center;
-  align-items: center;
-  resize: vertical;
-}
-
-.gjs-frame-wrapper {
-  min-width: 0 !important;
-}
-
-/* Panel background */
-
-/* Basic styles for grid items - adjust according to your actual gridItem class or element */
-.grid-item {
-  background-color: #282828; /* Light grey background */
-  padding: 8px; /* Padding inside each grid item */
-  box-sizing: border-box; /* Include padding in the total width and height */
-  border: 1px dotted #d0d0d0; /* Border for each grid item */
-  border-radius: 4px; /* Rounded corners for grid items */
-  resize: vertical;
-  justify-self: center;
+.gjs-am-assets-cont {
   width: 100%;
 }
 
-#Home-home-0 {
-  min-width: unset !important;
+.gjs-layer-children {
+  display: flex;
+  flex-wrap: wrap;
 }
+
+.gjs-mdl-dialog {
+  width: 100%;
+  justify-self: right;
+}
+
+.gjs-pn-views {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: scroll;
+  scroll-padding-bottom: 0 !important;
+  scroll-snap-type: none;
+  scroll-behavior: smooth;
+  scroll-padding: 0;
+
+  -ms-overflow-style: none !important;
+}
+
+.gjs-pn-buttons {
+  z-index: 100 !important;
+}
+
+.gjs-pn-panels {
+  z-index: 90 !important;
+}
+
+/* Class names prefixes */
+
+.code-panel {
+  text-align: left;
+  font-size: 1rem;
+  z-index: 80 !important;
+  overflow: hidden;
+}
+
+.gjs-code-panel section .codepanel-separator {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
+}
+
+.gjs-code-panel section .codepanel-label {
+  line-height: 20px;
+  font-size: 13px;
+  color: #aaa;
+
+  -webkit-user-select: none;
+  user-select: none;
+  text-transform: uppercase;
+}
+
+.gjs-pn-views-container,
+.gjs-cv-canvas {
+  transition: width 0.3s ease-in-out;
+}
+
+.gjs-pn-views-container {
+  overflow-x: scroll;
+  scroll-snap-type: none;
+  scroll-behavior: smooth;
+}
+
 /* Highlight grid item on drag over */
+/* Highlight grid item on drag over */
+.gjs-pn-views-container::-webkit-scrollbar {
+  display: none;
+  scrollbar-width: 0px;
+  padding: 0px;
+  margin: 0px;
+}
+
+@keyframes zoomAnimation {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes deZoom {
+  from {
+    transform: scale(2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.de-zoom {
+  animation: deZoom 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.fullscreen-zoom-animation {
+  animation: zoomAnimation 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
