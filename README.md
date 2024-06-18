@@ -67,10 +67,6 @@ Empower your Sanity Studio with a seamless visual editing experience! This proje
    pnpm install vercel@latest
    ```
 
-### Contributing
-
-We welcome contributions! Feel free to open issues, submit pull requests, or share your feedback.
-
 **Key changes:**
 
 - **Version Updated:** Changed the version number to 1.1.1.
