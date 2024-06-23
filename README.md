@@ -1,4 +1,4 @@
-Fantastic! Here's the updated Markdown to reflect the 1.1.1 release:
+
 
 ## Sanity Visual Block Editor with GrapesJS Integration
 
